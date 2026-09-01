@@ -1,0 +1,317 @@
+/* ===============================================================
+   nav.css — 顶部导航栏 (美术馆 / 策展风格)
+   =============================================================== */
+
+/* ── 导航 CSS 变量 ── */
+:root {
+  --nav-height: 60px;
+  --nav-bg: rgba(28, 20, 15, 0.92);
+  --nav-text: #d4c5a9;
+  --nav-text-hover: #c9a96e;
+  --nav-underline: var(--gold);
+  --nav-shadow: 0 1px 0 rgba(168, 133, 61, 0.08);
+  --nav-shadow-scrolled: 0 1px 0 rgba(168, 133, 61, 0.18), 0 4px 24px rgba(0, 0, 0, 0.25);
+  --nav-mobile-bg: rgba(23, 19, 12, 0.98);
+  --nav-overlay-bg: rgba(0, 0, 0, 0.45);
+  --nav-divider: 1px solid rgba(168, 133, 61, 0.1);
+}
+
+/* ── 顶部导航容器 ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+/* Glass 毛玻璃效果通过伪元素实现，避免创建 fixed 子元素的限制容器 */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  transition: background var(--duration-base) var(--ease-out);
+}
+
+/* 滚动后显影 */
+.nav[data-scrolled="true"] {
+  border-bottom-color: rgba(168, 133, 61, 0.15);
+  box-shadow: var(--nav-shadow-scrolled);
+}
+
+/* ── 内部三栏布局 ── */
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ── 左侧: Logo ── */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--nav-text);
+  letter-spacing: 0.08em;
+  transition: color var(--duration-fast);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav__logo:hover {
+  color: var(--nav-text-hover);
+}
+
+/* 金色装饰元素 */
+.nav__logo-decor {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity var(--duration-fast), transform var(--duration-base);
+}
+
+.nav__logo:hover .nav__logo-decor {
+  opacity: 1;
+  transform: rotate(135deg);
+}
+
+/* ── 中间: 导航链接 (桌面端) ── */
+.nav__menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.8rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--nav-text);
+  padding: 0.25em 0;
+  text-decoration: none;
+  transition: color var(--duration-base) var(--ease-out);
+  cursor: pointer;
+}
+
+.nav__link:hover {
+  color: var(--nav-text-hover);
+}
+
+/* 底部下划线: 默认隐藏，从中间展开 */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--nav-underline);
+  transition:
+    width var(--duration-base) var(--ease-out),
+    left var(--duration-base) var(--ease-out);
+}
+
+.nav__link:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+/* Active 状态 */
+.nav__link--active {
+  color: var(--nav-text-hover);
+}
+
+.nav__link--active::after {
+  left: 0;
+  width: 100%;
+}
+
+/* ── 右侧: 操作按钮组 ── */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   桌面端 (>1024px): 水平导航
+   ═══════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  .nav__hamburger {
+    display: none;
+  }
+}
+
+
+/* ═══════════════════════════════════════════
+   移动端 (≤1023px): 汉堡菜单 + 滑入面板
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  /* 隐藏桌面端菜单，改为固定定位面板 */
+  .nav__menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--nav-mobile-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: var(--nav-divider);
+    padding: var(--space-md) 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .nav__menu--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* 纵向链接列表 */
+  .nav__links {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 var(--space-lg);
+  }
+
+  .nav__link {
+    display: block;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid rgba(168, 133, 61, 0.08);
+    white-space: nowrap;
+  }
+
+  .nav__link:last-child {
+    border-bottom: none;
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link--active {
+    color: var(--nav-text-hover);
+    background: rgba(168, 133, 61, 0.06);
+    margin: 0 calc(-1 * var(--space-lg));
+    padding-left: var(--space-lg);
+  }
+
+  /* ── 汉堡菜单按钮 ── */
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      border-color var(--duration-fast),
+      background var(--duration-fast);
+  }
+
+  .nav__hamburger:hover {
+    border-color: var(--gold-border);
+    background: var(--gold-dim);
+  }
+
+  .nav__hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--nav-text);
+    border-radius: 1px;
+    transform-origin: center;
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      opacity var(--duration-base) var(--ease-out),
+      background var(--duration-fast);
+  }
+
+  .nav__hamburger:hover .nav__hamburger-line {
+    background: var(--nav-text-hover);
+  }
+
+  /* 汉堡菜单 → X 动画 */
+  .nav__hamburger--open .nav__hamburger-line:nth-child(1) {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .nav__hamburger--open .nav__hamburger-line:nth-child(2) {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+}
+
+/* ── 遮罩层 ── */
+.nav__overlay {
+  position: fixed;
+  inset: 0;
+  top: var(--nav-height);
+  z-index: 99;
+  background: var(--nav-overlay-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.nav__overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ═══════════════════════════════════════════
+   尊重 prefers-reduced-motion
+   ═══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__menu,
+  .nav__overlay,
+  .nav__link::after,
+  .nav__hamburger-line {
+    transition-duration: 0.01ms !important;
+  }
+}

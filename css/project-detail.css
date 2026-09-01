@@ -1,0 +1,230 @@
+/* ===============================================================
+   project-detail.css — 项目详情页样式
+   =============================================================== */
+
+.project-detail {
+  padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-5xl);
+  min-height: 100vh;
+}
+
+/* ── 返回链接 ── */
+.project-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-decoration: none;
+  padding: var(--space-sm) 0;
+  margin-bottom: var(--space-2xl);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.project-detail__back:hover {
+  color: var(--gold-light);
+}
+
+.project-detail__back-arrow {
+  font-size: 1rem;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.project-detail__back:hover .project-detail__back-arrow {
+  transform: translateX(-4px);
+}
+
+/* ── 加载状态 ── */
+.project-detail__loading {
+  text-align: center;
+  padding: var(--space-5xl) 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.project-detail__spinner {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto var(--space-lg);
+  border: 2px solid var(--gold-dim);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── 错误状态 ── */
+.project-detail__error {
+  text-align: center;
+  padding: var(--space-4xl) 0;
+}
+
+.project-detail__error-frame {
+  display: inline-block;
+  padding: var(--space-3xl) var(--space-2xl);
+  border: var(--rule-thin);
+  position: relative;
+}
+
+.project-detail__error-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: var(--space-md);
+}
+
+.project-detail__error-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.project-detail__error-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.project-detail__error-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 0.6em 2em;
+  border: 1px solid var(--gold-border);
+  transition:
+    background var(--duration-fast),
+    color var(--duration-fast);
+}
+
+.project-detail__error-btn:hover {
+  background: var(--gold-dim);
+  color: var(--gold-light);
+}
+
+/* ── 内容区 ── */
+.project-detail__header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.project-detail__number {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.8;
+  border: 1px solid var(--gold-border);
+  padding: 0.25em 1em;
+  margin-bottom: var(--space-lg);
+}
+
+.project-detail__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.project-detail__rule {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: var(--space-xl) auto 0;
+  opacity: 0.6;
+}
+
+/* ── 介绍区 ── */
+.project-detail__intro {
+  margin-bottom: var(--space-3xl);
+}
+
+.project-detail__desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: var(--space-xl);
+}
+
+.project-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* ── 占位区 (即将展出) ── */
+.project-detail__placeholder {
+  margin-top: var(--space-3xl);
+}
+
+.project-detail__placeholder-frame {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-2xl);
+  border: var(--rule-thin);
+  position: relative;
+}
+
+.project-detail__placeholder-ornament {
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-lg);
+}
+
+.project-detail__placeholder-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+.project-detail__placeholder-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto var(--space-xl);
+}
+
+.project-detail__placeholder-dash {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-border);
+  margin: 0 auto var(--space-lg);
+}
+
+.project-detail__placeholder-note {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .project-detail {
+    padding: calc(var(--nav-height) + var(--space-2xl)) 0 var(--space-3xl);
+  }
+
+  .project-detail__placeholder-frame {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .project-detail__error-frame {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+}

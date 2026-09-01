@@ -1,0 +1,26 @@
+[
+  {
+    "id": "todo-calendar",
+    "title": "Todo Calendar 小程序",
+    "description": "基于微信小程序的 TODO 清单与日历规划工具。使用 wx.setStorageSync 实现本地持久化存储，自定义日历网格算法，极简黑白配色风格，支持任务增删改查与日历视图切换。",
+    "tags": ["微信小程序", "JavaScript", "WXML/WXSS"]
+  },
+  {
+    "id": "personal-site",
+    "title": "个人主页网站",
+    "description": "美术馆策展风格的个人品牌网站。深棕暗金配色与泛黄纸色卡片营造画廊质感，摄影作品支持分类筛选与 Lightbox 大图浏览，卡片具备 3D 鼠标跟随倾斜效果，纯静态部署于 GitHub Pages。",
+    "tags": ["HTML/CSS", "JavaScript", "GitHub Pages", "Pillow"]
+  },
+  {
+    "id": "math-notes",
+    "title": "数学分析笔记系统",
+    "description": "基于 Obsidian 的数学分析知识库，覆盖华东师大版《数学分析》第五版核心定理与证明。使用 LaTeX 公式渲染，双向链接构建知识图谱，支持全文检索与标签导航。",
+    "tags": ["Obsidian", "LaTeX", "Markdown"]
+  },
+  {
+    "id": "news-bot",
+    "title": "每日新闻早报",
+    "description": "自动化新闻聚合与推送系统。多源采集（澎湃新闻、微博热搜、抖音热点等），AI 摘要生成与分类，通过飞书机器人每日定时推送，聚焦科技与财经领域。",
+    "tags": ["Python", "飞书 API", "RSS", "Cron"]
+  }
+]

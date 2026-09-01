@@ -1,0 +1,124 @@
+/* ===============================================================
+   about.css — 关于我
+   =============================================================== */
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-3xl);
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── 左侧: 肖像区 ── */
+.about__portrait {
+  position: relative;
+}
+
+.about__portrait-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-surface);
+  border: var(--rule-thin);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about__portrait-placeholder {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.1em;
+}
+
+/* 肖像装饰角标 */
+.about__portrait-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-right: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+/* ── 右侧: 文字区 ── */
+.about__text {
+  padding-top: var(--space-md);
+}
+
+.about__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-sm);
+}
+
+.about__role {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-border);
+  padding-bottom: 0.25em;
+  margin-bottom: var(--space-lg);
+}
+
+.about__bio {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+.about__bio p + p {
+  margin-top: var(--space-md);
+}
+
+/* ── 信息列表 ── */
+.about__details {
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.about__detail {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.about__detail-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  min-width: 60px;
+  font-family: var(--font-sans);
+}
+
+.about__detail-value {
+  color: var(--text-secondary);
+}
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .about__portrait-frame {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .about__text {
+    padding-top: 0;
+  }
+}

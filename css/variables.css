@@ -1,0 +1,70 @@
+/* ===============================================================
+   variables.css — 设计系统变量 (美术馆 / 策展风格)
+   =============================================================== */
+
+:root {
+  /* ── 背景色系 ── */
+  --bg-deep:       #17130C;
+  --bg-warm:       #191409;
+  --bg-gradient:   linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-warm) 50%, #14100b 100%);
+  --bg-surface:    #1E1A13;
+
+  /* ── 点缀色: 暗金 ── */
+  --gold:          #A8853D;
+  --gold-light:    #C9B488;
+  --gold-dim:      rgba(168, 133, 61, 0.15);
+  --gold-border:   rgba(168, 133, 61, 0.4);
+
+  /* ── 卡片色: 泛黄纸 ── */
+  --paper:         #F4F0E6;
+  --paper-light:   #FBF9F3;
+  --paper-muted:   #E8E2D2;
+  --paper-dark:    #D4CCB5;
+
+  /* ── 文字色系 ── */
+  --text-primary:  #FFFDF5;
+  --text-secondary:#7A7159;
+  --text-muted:    #5A5345;
+  --text-on-paper: #2C2A20;
+  --text-on-paper-secondary: #6B6555;
+
+  /* ── 字体 ── */
+  --font-serif:    "Noto Serif SC", "Source Han Serif SC", "SimSun", "STSong", Georgia, "Times New Roman", serif;
+  --font-sans:     "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+  --font-display:  "Noto Serif SC", "STSong", Georgia, serif;
+
+  /* ── 间距 ── */
+  --space-sm:      0.5rem;
+  --space-md:      1rem;
+  --space-lg:      1.5rem;
+  --space-xl:      2rem;
+  --space-2xl:     3rem;
+  --space-3xl:     4rem;
+  --space-4xl:     6rem;
+  --space-5xl:     8rem;
+
+  /* ── 容器宽度 ── */
+  --container-max: 1200px;
+  --container-narrow: 800px;
+
+  /* ── 圆角 ── */
+  --radius-sm:     2px;
+  --radius-md:     4px;
+  --radius-lg:     8px;
+
+  /* ── 阴影 ── */
+  --shadow-card:   0 2px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(168, 133, 61, 0.15);
+  --shadow-frame:  0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(168, 133, 61, 0.25);
+  --shadow-hover:  0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 180, 136, 0.4);
+
+  /* ── 过渡 ── */
+  --ease-out:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out:   cubic-bezier(0.645, 0.045, 0.355, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+
+  /* ── 版面装饰 ── */
+  --rule-thin:     1px solid var(--gold-border);
+  --rule-thick:    2px solid var(--gold-border);
+}

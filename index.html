@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="个人主页 — 数学、摄影与代码的策展空间" />
+  <title>策展空间 · 个人主页</title>
+
+  <!-- CSS (顺序: reset → variables → layout → 板块) -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+  <link rel="stylesheet" href="css/lightbox.css" />
+  <link rel="stylesheet" href="css/hero-effects.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+
+  <!-- Favicon (简单几何图形 SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2317130C' rx='4'/><text y='72' font-size='60' text-anchor='middle' x='50' fill='%23A8853D' font-family='serif'>策</text></svg>" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+        顶部导航栏
+        ═══════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <!-- 左侧: Logo -->
+      <a href="#home" class="nav__logo" aria-label="返回首页">
+        <span class="nav__logo-decor"></span>
+        <span class="nav__logo-text">策展空间</span>
+      </a>
+
+      <!-- 中间: 导航链接 -->
+      <nav class="nav__menu" id="nav-menu" aria-label="主导航">
+        <ul class="nav__links">
+          <li><a href="#home" class="nav__link nav__link--active">一号展厅：序章</a></li>
+          <li><a href="#about" class="nav__link">二号展厅：关于</a></li>
+          <li><a href="#projects" class="nav__link">三号展厅：造物</a></li>
+          <li><a href="#gallery" class="nav__link">四号展厅：光影</a></li>
+        </ul>
+      </nav>
+
+      <!-- 右侧: 操作按钮 -->
+      <div class="nav__actions">
+        <!-- 汉堡菜单 (移动端) -->
+        <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-menu" aria-label="打开菜单">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 移动端遮罩 -->
+  <div class="nav__overlay" id="nav-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+        Hero 首屏
+        ═══════════════════════════════════════════ -->
+  <header class="hero" id="home">
+
+    <!-- 动态背景层：Ken Burns 推拉 + 金色光点漂浮 -->
+    <div class="hero__bg"></div>
+    <div class="hero__particles">
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+      <span class="hero__particle"></span><span class="hero__particle"></span>
+    </div>
+
+    <div class="hero__frame fade-in">
+      <div class="hero__number">No.001 · 首展</div>
+
+      <!-- 装饰 -->
+      <div class="hero__ornament">
+        <span class="hero__ornament-line"></span>
+        <span class="hero__ornament-dot"></span>
+        <span class="hero__ornament-line"></span>
+        <span class="hero__ornament-dot"></span>
+        <span class="hero__ornament-line"></span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">策展空间</span>
+      </h1>
+
+      <div class="hero__divider">
+        <span class="hero__divider-line"></span>
+        <span class="hero__divider-icon">◆</span>
+        <span class="hero__divider-line"></span>
+      </div>
+
+      <p class="hero__subtitle">
+        数学、摄影与代码的个人策展。在定理与光影之间，记录思考的痕迹。
+      </p>
+
+      <div class="hero__meta">
+        <span>西南大学 · 数学系</span>
+        <span>对万物好奇的学习者</span>
+      </div>
+    </div>
+
+    <!-- 滚动指示 -->
+    <a href="#about" class="hero__scroll" aria-label="向下滚动">
+      <span class="hero__scroll-text">浏览展厅</span>
+      <span class="hero__scroll-line"></span>
+    </a>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       关于我
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container container--narrow">
+
+      <div class="section__header fade-in">
+        <span class="section__label">关于</span>
+        <h2 class="section__title">关于我</h2>
+        <div class="rule"></div>
+      </div>
+
+      <div class="about__content">
+        <!-- 左侧: 肖像 -->
+        <div class="about__portrait fade-in fade-in--delay-1">
+          <div class="about__portrait-frame">
+            <span class="about__portrait-placeholder">?</span>
+          </div>
+        </div>
+
+        <!-- 右侧: 文字 -->
+        <div class="about__text fade-in fade-in--delay-2">
+          <h2 class="about__name">刘同学</h2>
+          <span class="about__role">西南大学 · 数学与应用数学</span>
+
+          <div class="about__bio">
+            <p>
+              现就读于西南大学数学与统计学院。 在严谨的数学推理之外，我痴迷于摄影的光影捕捉与代码的构建之美。
+            </p>
+            <p>
+              这个网站是我个人兴趣的策展空间——这里陈列着我的各类项目、摄影作品。每一件作品都像是展厅中的一幅画，
+              等待被发现与解读。
+            </p>
+          </div>
+
+          <div class="about__details">
+            <div class="about__detail">
+              <span class="about__detail-label">位置</span>
+              <span class="about__detail-value">重庆 · 北碚</span>
+            </div>
+            <div class="about__detail">
+              <span class="about__detail-label">方向</span>
+              <span class="about__detail-value">数学 / 开发 / 摄影</span>
+            </div>
+            <div class="about__detail">
+              <span class="about__detail-label">设备</span>
+              <span class="about__detail-value">Nikon Z30</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       项目作品
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+
+      <div class="section__header fade-in">
+        <span class="section__label">作品</span>
+        <h2 class="section__title">项目作品</h2>
+        <p class="section__subtitle">
+          编号式陈列。每一件作品都是精心打磨的展品。
+        </p>
+        <div class="rule"></div>
+      </div>
+
+      <div class="projects__grid" id="projects-grid">
+        <!-- 由 main.js 动态渲染 -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       摄影作品
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="gallery">
+    <div class="container">
+
+      <div class="section__header fade-in">
+        <span class="section__label">画廊</span>
+        <h2 class="section__title">摄影作品</h2>
+        <p class="section__subtitle">
+          镜头下的光影切片。鼠标悬停卡片体验 3D 策展视角。
+        </p>
+        <div class="rule"></div>
+      </div>
+
+      <!-- 分类筛选 -->
+      <div class="gallery__filters fade-in fade-in--delay-1" id="gallery-filters">
+        <!-- 由 gallery.js 动态渲染 -->
+      </div>
+
+      <!-- 照片网格 -->
+      <div class="gallery__grid" id="gallery-grid">
+        <!-- 由 gallery.js 动态渲染 -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       页脚
+       ═══════════════════════════════════════════ -->
+  <footer style="text-align:center;padding:var(--space-3xl) var(--space-lg);color:var(--text-muted);font-size:0.75rem;letter-spacing:0.1em;border-top:var(--rule-thin);margin-top:var(--space-4xl);">
+    <p>&copy; 2025 策展空间 · 保留所有权利</p>
+    <p style="margin-top:var(--space-sm);opacity:0.6;">建于 GitHub Pages · 纯静态策展</p>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════
+       JavaScript (顺序依赖: CardTilt → Lightbox → Gallery → main)
+       ═══════════════════════════════════════════ -->
+  <script src="js/nav.js"></script>
+  <script src="js/card-tilt.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

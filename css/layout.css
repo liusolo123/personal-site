@@ -1,0 +1,111 @@
+/* ===============================================================
+   layout.css — 全局布局 + 通用组件
+   =============================================================== */
+
+/* ── 基础 ── */
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── 容器 ── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+/* ── 区块通用样式 ── */
+.section {
+  padding: var(--space-5xl) 0;
+  position: relative;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.section__label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  padding: 0.25em 1em;
+  margin-bottom: var(--space-md);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.section__subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-sm);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ── 装饰分割线 ── */
+.rule {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: var(--space-md) auto;
+  opacity: 0.6;
+}
+
+/* ── 淡入动画 ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in--delay-1 { transition-delay: 0.1s; }
+.fade-in--delay-2 { transition-delay: 0.2s; }
+.fade-in--delay-3 { transition-delay: 0.3s; }
+.fade-in--delay-4 { transition-delay: 0.4s; }
+.fade-in--delay-5 { transition-delay: 0.5s; }
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .section__header {
+    margin-bottom: var(--space-2xl);
+  }
+}

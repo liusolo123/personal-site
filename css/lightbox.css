@@ -1,0 +1,165 @@
+/* ===============================================================
+   lightbox.css — 大图查看器
+   =============================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 8, 5, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.lightbox--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── 关闭按钮 ── */
+.lightbox__close {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  transition: color var(--duration-fast);
+  z-index: 10;
+}
+
+.lightbox__close:hover {
+  color: var(--text-primary);
+}
+
+/* ── 导航按钮 ── */
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  border: 1px solid rgba(122, 113, 89, 0.3);
+  border-radius: 50%;
+  transition:
+    color var(--duration-fast),
+    border-color var(--duration-fast),
+    background var(--duration-fast);
+  z-index: 10;
+}
+
+.lightbox__nav:hover {
+  color: var(--text-primary);
+  border-color: var(--gold);
+  background: rgba(168, 133, 61, 0.1);
+}
+
+.lightbox__nav--prev {
+  left: var(--space-lg);
+}
+
+.lightbox__nav--next {
+  right: var(--space-lg);
+}
+
+/* ── 内容区 ── */
+.lightbox__content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox__image-wrap {
+  position: relative;
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+.lightbox__image {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 1px solid rgba(168, 133, 61, 0.2);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ── 信息栏 ── */
+.lightbox__info {
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.lightbox__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.lightbox__category {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+
+.lightbox__counter {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+  letter-spacing: 0.1em;
+}
+
+/* ── 键盘导航提示 ── */
+.lightbox__hint {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .lightbox__nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .lightbox__nav--prev {
+    left: var(--space-sm);
+  }
+
+  .lightbox__nav--next {
+    right: var(--space-sm);
+  }
+
+  .lightbox__close {
+    top: var(--space-sm);
+    right: var(--space-sm);
+  }
+
+  .lightbox__hint {
+    display: none;
+  }
+}

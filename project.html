@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="项目详情 — 策展空间" />
+  <title>策展空间 · 项目详情</title>
+
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/project-detail.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2317130C' rx='4'/><text y='72' font-size='60' text-anchor='middle' x='50' fill='%23A8853D' font-family='serif'>策</text></svg>" />
+</head>
+<body>
+
+  <!-- ═══════════ 导航栏 ═══════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo" aria-label="返回首页">
+        <span class="nav__logo-decor"></span>
+        <span class="nav__logo-text">策展空间</span>
+      </a>
+
+      <nav class="nav__menu" id="nav-menu" aria-label="主导航">
+        <ul class="nav__links">
+          <li><a href="index.html#home" class="nav__link">一号展厅：序章</a></li>
+          <li><a href="index.html#about" class="nav__link">二号展厅：关于</a></li>
+          <li><a href="index.html#projects" class="nav__link nav__link--active">三号展厅：造物</a></li>
+          <li><a href="index.html#gallery" class="nav__link">四号展厅：光影</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-menu" aria-label="打开菜单">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav__overlay" id="nav-overlay"></div>
+
+  <!-- ═══════════ 项目详情 ═══════════ -->
+  <main class="project-detail">
+    <div class="container container--narrow">
+
+      <a href="index.html#projects" class="project-detail__back fade-in">
+        <span class="project-detail__back-arrow">&larr;</span>
+        返回展厅
+      </a>
+
+      <!-- 加载状态 -->
+      <div class="project-detail__loading" id="project-loading">
+        <div class="project-detail__spinner"></div>
+        <p>展品加载中…</p>
+      </div>
+
+      <!-- 错误状态 -->
+      <div class="project-detail__error" id="project-error" style="display:none;">
+        <div class="project-detail__error-frame">
+          <p class="project-detail__error-label">No.000 · 未找到</p>
+          <h2 class="project-detail__error-title">该展品不存在</h2>
+          <p class="project-detail__error-desc">
+            您查找的项目可能已撤展或链接有误。
+          </p>
+          <a href="index.html#projects" class="project-detail__error-btn">返回展厅</a>
+        </div>
+      </div>
+
+      <!-- 项目内容 (由 JS 填充) -->
+      <div class="project-detail__content" id="project-content" style="display:none;">
+        <!-- 标题区 -->
+        <div class="project-detail__header fade-in">
+          <span class="project-detail__number" id="project-number">No.001</span>
+          <h1 class="project-detail__title" id="project-title"></h1>
+          <div class="project-detail__rule"></div>
+        </div>
+
+        <!-- 介绍区 -->
+        <div class="project-detail__intro fade-in fade-in--delay-1">
+          <p class="project-detail__desc" id="project-desc"></p>
+          <div class="project-detail__tags" id="project-tags"></div>
+        </div>
+
+        <!-- 详情占位区 -->
+        <div class="project-detail__placeholder fade-in fade-in--delay-2">
+          <div class="project-detail__placeholder-frame">
+            <div class="project-detail__placeholder-ornament">◆</div>
+            <h2 class="project-detail__placeholder-title">展品详情 · 即将展出</h2>
+            <p class="project-detail__placeholder-desc">
+              该项目的详细介绍正在策展筹备中。<br />
+              届时将呈现完整的技术架构、设计思路与实现细节。
+            </p>
+            <div class="project-detail__placeholder-dash"></div>
+            <p class="project-detail__placeholder-note">
+              敬请期待 &mdash; 策展空间
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══════════ 页脚 ═══════════ -->
+  <footer style="text-align:center;padding:var(--space-3xl) var(--space-lg);color:var(--text-muted);font-size:0.75rem;letter-spacing:0.1em;border-top:var(--rule-thin);margin-top:var(--space-4xl);">
+    <p>&copy; 2025 策展空间 · 保留所有权利</p>
+    <p style="margin-top:var(--space-sm);opacity:0.6;">建于 GitHub Pages · 纯静态策展</p>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var loadingEl = document.getElementById('project-loading');
+      var errorEl = document.getElementById('project-error');
+      var contentEl = document.getElementById('project-content');
+
+      function showLoading() {
+        loadingEl.style.display = '';
+        errorEl.style.display = 'none';
+        contentEl.style.display = 'none';
+      }
+
+      function showError() {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = '';
+        contentEl.style.display = 'none';
+      }
+
+      function showContent(project, index) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'none';
+        contentEl.style.display = '';
+
+        document.getElementById('project-number').textContent = 'No.' + String(index + 1).padStart(3, '0');
+        document.getElementById('project-title').textContent = project.title;
+        document.getElementById('project-desc').textContent = project.description;
+
+        var tagsHtml = (project.tags || []).map(function (t) {
+          return '<span class="project-card__tag">' + t + '</span>';
+        }).join('');
+        document.getElementById('project-tags').innerHTML = tagsHtml;
+
+        document.title = project.title + ' · 策展空间';
+
+        requestAnimationFrame(function () {
+          contentEl.querySelectorAll('.fade-in').forEach(function (el) {
+            el.classList.add('visible');
+          });
+        });
+      }
+
+      function init() {
+        showLoading();
+
+        var params = new URLSearchParams(window.location.search);
+        var projectId = params.get('id');
+
+        if (!projectId) {
+          showError();
+          return;
+        }
+
+        fetch('data/projects.json')
+          .then(function (resp) {
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            return resp.json();
+          })
+          .then(function (projects) {
+            var index = -1;
+            var project = null;
+
+            for (var i = 0; i < projects.length; i++) {
+              if (projects[i].id === projectId) {
+                project = projects[i];
+                index = i;
+                break;
+              }
+            }
+
+            if (!project) {
+              showError();
+              return;
+            }
+
+            showContent(project, index);
+          })
+          .catch(function (err) {
+            console.error('project: 加载项目数据失败', err);
+            showError();
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
+</body>
+</html>
