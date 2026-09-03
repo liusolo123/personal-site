@@ -2,7 +2,7 @@
 
 > 生成日期：2026-09-01
 > 决策来源：方案探讨确认 —— 部署链路选「裸仓库 + post-receive hook」/ 旧站（本站旧版）备份后整体替换 / GitHub Pages 关闭
-> 状态：**Step 0 盘点 + Step 1 免密通道已完成（2026-09-01）；Step 2 起待执行**
+> 状态：**已上线生效（2026-09-01 15:08 双推成功，hook 部署）**；Step 6 关闭 Pages 待用户网页操作
 
 ---
 
@@ -178,6 +178,10 @@ git push git@github.com:liusolo123/personal-site.git main
 | `https://liusolo.top/photos/full/photo_001.jpg` | 404（隐私图不在站内） |
 | `git push` 回显 | 双 remote 各一段输出，含 `✓ deployed` |
 | GitHub 仓库 | 最新 commit 与本地一致 |
+
+**首次验收记录（2026-09-01）**：首页/详情页/公开图全 200；服务器 `photos/full` 与 `photos.json` 均 37 项、无朋友照片残留；push 回显 `deployed` 正常。
+
+⚠️ **发现的遗留问题（非隐私泄露）**：主站 nginx 有旧站遗留的 SPA 回退规则 `try_files $uri $uri/ /index.html;`——不存在的路径（含已删隐私图 URL）会回退到 index.html 并返回 **200**（Content-Type: text/html）。隐私照片在文件系统层面已确认不存在，不构成泄露，但该规则导致：①「隐私路径 404」验收项无法用状态码判定（需以文件系统核对为准）；②图片等静态资源请求 404 时浏览器收到 HTML 会被误解析。**可选项**：把主站配置改为静态资源优先 404、仅页面路径回退，需改 nginx 配置并 reload（有生产影响，已另行确认，未擅改）。
 
 ## 11. 回滚方案（三层）
 
