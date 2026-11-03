@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="刘同学的个人策展空间，展示项目作品与摄影作品。">
+  <title>策展空间 · 项目与摄影</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23192521'/%3E%3Ctext x='40' y='56' text-anchor='middle' font-size='48' fill='%23F2F3EF' font-family='serif'%3E策%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/demo.css">
+  <script src="js/demo.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到作品</a>
+  <header class="exhibition exhibition--intro" id="home">
+    <div class="container">
+      <div class="site-nav">
+        <a class="wordmark" href="#home" aria-label="策展空间，返回页首">策展空间</a>
+        <nav class="site-nav__links" aria-label="主导航">
+          <a href="#projects">项目</a>
+          <a href="#photography">摄影</a>
+          <a href="#about">关于</a>
+        </nav>
+      </div>
+      <div class="intro-heading" id="main">
+        <h1>造物，也记录。</h1>
+        <p>项目作品与摄影作品的个人策展。<br>刘同学 · 西南大学数学与应用数学</p>
+      </div>
+      <div class="portals">
+        <article class="portal" aria-label="项目作品入口">
+          <div class="portal__heading">
+            <h2>项目作品</h2>
+            <a class="action-link" href="#projects">探索项目 <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="portal__media project-cover" id="featured-project-cover" href="#projects" aria-label="查看项目作品">
+            <span class="project-cover__kind" id="featured-project-kind">项目作品</span>
+            <span class="project-cover__title" id="featured-project-name">想法<br>与实践</span>
+            <span class="project-cover__note">从一个想法，到一件作品。</span>
+          </a>
+          <div class="portal__caption">
+            <h3 id="featured-project-title">把想法做成作品</h3>
+            <p>数学、代码与日常里的实践。</p>
+          </div>
+        </article>
+        <article class="portal" aria-label="摄影作品入口">
+          <div class="portal__heading">
+            <h2>摄影作品</h2>
+            <a class="action-link" href="#photography">浏览摄影 <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="portal__media photo-cover" href="#photography" aria-label="浏览摄影作品">
+            <img id="featured-photo" src="photos/full/photo_071.jpg" alt="摄影作品：水面上的竹筏" width="2000" height="1333" fetchpriority="high">
+          </a>
+          <div class="portal__caption">
+            <h3>镜头下的日常</h3>
+            <p>风光、城市与身边的光影片刻。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="exhibition exhibition--projects" id="projects" aria-labelledby="projects-heading">
+      <div class="container section-content">
+        <div class="section-heading">
+          <h2 id="projects-heading">精选项目</h2>
+          <p>让想法落地，在实践中寻找答案。</p>
+        </div>
+        <div class="project-list" id="demo-projects" aria-live="polite">
+          <p class="content-status">正在整理项目作品…</p>
+        </div>
+        <noscript><p class="content-status">项目合集需要启用 JavaScript。你也可以直接阅读 <a href="project.html?id=todo-calendar">Todo Calendar 小程序</a>的项目介绍。</p></noscript>
+      </div>
+    </section>
+
+    <section class="exhibition exhibition--photography" id="photography" aria-labelledby="photography-heading">
+      <div class="container section-content">
+        <div class="section-heading">
+          <h2 id="photography-heading">摄影作品</h2>
+          <p>以镜头，保存日常里的片刻。</p>
+        </div>
+        <div class="photo-summary" id="demo-photo-summary" aria-live="polite"></div>
+        <div class="photo-grid" id="demo-photos">
+          <p class="content-status">正在整理摄影作品…</p>
+        </div>
+        <noscript><p class="content-status">摄影合集需要启用 JavaScript。两类作品的入口和页面介绍仍可正常阅读。</p></noscript>
+      </div>
+    </section>
+
+    <section class="exhibition exhibition--about" id="about" aria-labelledby="about-heading">
+      <div class="container about-content">
+        <h2 id="about-heading">关于这间展厅</h2>
+        <div class="about-copy">
+          <p>我是刘同学，就读于西南大学数学与应用数学专业。在数学之外，我也用代码构建工具，用相机记录身边的世界。</p>
+          <p>这里收藏我做过的项目，也收藏我拍下的照片。</p>
+          <span class="about-location">重庆 · 北碚 / Nikon Z30</span>
+        </div>
+      </div>
+      <footer class="container site-footer">
+        <a class="wordmark" href="#home">策展空间</a>
+        <a class="action-link" href="#home">回到页首 <span aria-hidden="true">↑</span></a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
