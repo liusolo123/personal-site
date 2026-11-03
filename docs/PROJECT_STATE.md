@@ -8,7 +8,7 @@
 
 ## Current Work
 
-UI proposal is being revised around the confirmed purpose: project work and photography have equal prominence. Homepage layout, palette, and motion remain under discussion; no website implementation changes have been made for this redesign.
+The dual-exhibition UI direction is approved for an independent local demo. Add static subtle grain and chapter background colors (mist white → pale gray-green → deep ink green → mist white). Execution is split into `tasks/2026-11-04-demo-visual.md` (visual/data foundation) and `tasks/2026-11-04-demo-interaction.md` (interaction/responsive completion). The planner reviews each receipt; the current production home page is not being replaced.
 
 GitHub launch (docs/GIT_PUSH.md) is complete: clean single-commit history on `main`, pushed to `liusolo123/personal-site` via SSH, GitHub Pages was enabled. Strategy has since changed — the site's primary host returns to the Aliyun server (liusolo.top, domain already ICP-registered and pointing there); GitHub repo becomes version control/backup plus deploy trigger. Full plan documented in `docs/DEPLOY_WORKFLOW.md` (bare repo + post-receive hook, old-site tar backup then replace, Pages to be disabled). Plan only — no server-side operations executed yet.
 
@@ -31,4 +31,4 @@ Open `http://localhost:8080/` and `http://localhost:8080/project.html?id=todo-ca
 
 ## Next Step
 
-Define the acceptance criteria for the next website feature card, then update this document with its scope and executed verification after implementation.
+Execute and review the demo visual card, then the interaction card. Record accepted evidence here and archive completed cards after review. Production deployment remains a separate pending task.

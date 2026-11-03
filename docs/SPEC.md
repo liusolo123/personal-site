@@ -10,6 +10,15 @@ A Chinese-language personal portfolio centered on two equally important collecti
 - The homepage must make both collections easy to discover; neither is a secondary feature of the other.
 - Personal background supports the work rather than taking priority over either collection.
 
+## Approved UI Demo Direction
+
+- Build an independent `demo.html` preview using the existing static stack. The current home page remains the production entry while the demo is reviewed.
+- Use the agreed dual-exhibition composition: equal project and photography entrances on desktop, equal headings/actions, substantial previews for both, followed by featured projects, photography, and supporting personal information. Mobile visitors can discover both entrances immediately.
+- Enrich backgrounds with two layers: a subtle static paper/gallery-wall grain and full-width exhibition color fields. Use mist white `#F2F3EF` for the introduction, pale gray-green `#E5EBE6` for projects, deep ink green `#192521` for photography, then mist white for personal information/footer. Use `#1C2925` for dark text and restrained brass `#C5B58D` accents.
+- Grain is low contrast (approximately 2–4% opacity), non-interactive, and static. It must not muddy text or photographs. Separate sections through tone and spacing, not decorative gradients, thick frames, or particle effects.
+- The demo adds only these two background layers. Project and photo images remain content rather than large decorative page backgrounds. Existing project titles/descriptions and photography come from the current JSON datasets; typographic project covers may stand in until authentic product screenshots are supplied, without pretending to be screenshots.
+- Motion is limited to short entrance/hover/viewer feedback, with usable static/reduced-motion states. Keep keyboard access, readable contrast, responsive layout, and current project-detail links.
+
 ## User-Facing Pages
 
 - `index.html` contains hero, profile, project, and photo-gallery sections.
