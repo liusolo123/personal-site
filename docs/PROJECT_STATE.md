@@ -9,7 +9,7 @@
 
 ## Current Work
 
-The local demo at `http://127.0.0.1:4174/demo.html` is in interaction/responsive completion under `tasks/2026-11-04-demo-interaction.md`. The approved visual foundation has passed planner review. Production home page is not being replaced; no deployment is part of this work.
+The user has selected dmego/home.github.io as the background-effect reference. The new implementation brief is `tasks/2026-11-04-wallpaper-demo.md`, awaiting a later execution instruction. This planning turn ends after preparing the card. The previous interaction card is deferred. Its changes in `demo.html`, `css/demo.css`, and `js/demo.js` are still uncommitted and its receipt is incomplete. The previous preview URL is `http://127.0.0.1:4174/demo.html` when the local server is running.
 
 GitHub launch (docs/GIT_PUSH.md) is complete: clean single-commit history on `main`, pushed to `liusolo123/personal-site` via SSH, GitHub Pages was enabled. Strategy has since changed — the site's primary host returns to the Aliyun server (liusolo.top, domain already ICP-registered and pointing there); GitHub repo becomes version control/backup plus deploy trigger. Full plan documented in `docs/DEPLOY_WORKFLOW.md` (bare repo + post-receive hook, old-site tar backup then replace, Pages to be disabled). Plan only — no server-side operations executed yet.
 
@@ -34,4 +34,4 @@ Open `http://localhost:8080/` and `http://localhost:8080/project.html?id=todo-ca
 
 ## Next Step
 
-Execute/review the demo interaction card and archive it after acceptance. Production deployment remains a separate pending task.
+Await the user's execution instruction for `tasks/2026-11-04-wallpaper-demo.md`. Production deployment remains a separate pending task.

@@ -1,7 +1,7 @@
 # 双展区 Demo：交互、适配与交付
 
 - 日期：2026-11-04
-- 状态：待执行，视觉卡已验收通过
+- 状态：暂缓。用户已指定 dmego/home.github.io 为新背景参考，后续交接依据见 `tasks/2026-11-04-wallpaper-demo.md`。
 - 执行角色：执行者（另一位 AI）；规划者负责验收。
 - 前置卡：`tasks/2026-11-04-demo-visual.md`（验收后位于 `tasks/done/`）
 
