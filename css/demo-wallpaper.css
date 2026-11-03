@@ -1,0 +1,390 @@
+/* Full-viewport wallpaper demo; production styles stay untouched.
+   Background mechanism adapted from dmego/home.github.io (MIT, Copyright (c) 2017 Dmego):
+   fixed cover image layer, separate dark scrim, content scrolling above.
+   Implementation and styles are written for this project. */
+:root {
+  --wp-ink: #f5f2e9;
+  --wp-ink-soft: #ded9cb;
+  --wp-ink-muted: #bab4a5;
+  --wp-brass: #c8b88f;
+  --wp-scrim-opacity: 0.55;
+  --wp-panel: rgba(11, 20, 16, 0.78);
+  --wp-line: rgba(245, 242, 233, 0.16);
+  --wp-serif: "Songti SC", "STSong", "Noto Serif SC", "SimSun", Georgia, serif;
+  --wp-sans: "PingFang SC", "Microsoft YaHei", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --wp-gap: clamp(18px, 2.6vw, 36px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+  background-color: #0d1613;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--wp-ink);
+  font-family: var(--wp-sans);
+  font-size: 17px;
+  line-height: 1.75;
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-underline-offset: .25em; }
+a:focus-visible { outline: 2px solid var(--wp-brass); outline-offset: 5px; }
+
+.shell {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+/* Fixed wallpaper layer: image below scrim, neither receives pointer events.
+   The CSS default is the first entry of WALLPAPERS in js/demo-wallpaper.js. */
+.wallpaper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  z-index: 0;
+  overflow: hidden;
+  background: #0d1613;
+  pointer-events: none;
+}
+
+.wallpaper__image {
+  position: absolute;
+  inset: 0;
+  background-color: #0d1613;
+  background-image: url("../photos/full/photo_053.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wallpaper__scrim {
+  position: absolute;
+  inset: 0;
+  background: #071009;
+  opacity: var(--wp-scrim-opacity);
+}
+
+header,
+main { position: relative; z-index: 1; }
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  padding: 10px 16px;
+  color: #0b1310;
+  background: var(--wp-ink);
+  transform: translateY(-180%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Hero */
+.hero {
+  min-height: 100svh;
+  padding-bottom: clamp(36px, 6vh, 68px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.site-nav {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.wordmark {
+  font-family: var(--wp-serif);
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+.site-nav__links { display: flex; align-items: center; gap: 28px; }
+.site-nav__links a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.site-nav__links a:hover { color: var(--wp-brass); }
+
+.hero__intro {
+  max-width: 900px;
+  padding-block: clamp(44px, 8vh, 104px) clamp(32px, 5vh, 56px);
+  text-shadow: 0 1px 24px rgba(4, 10, 7, .55);
+}
+.hero__eyebrow {
+  margin-bottom: 18px;
+  color: var(--wp-brass);
+  font-size: 15px;
+  letter-spacing: .16em;
+}
+h1,
+h2 {
+  font-family: var(--wp-serif);
+  font-weight: 400;
+  letter-spacing: -.035em;
+}
+h1 {
+  font-size: clamp(38px, 5.4vw, 78px);
+  line-height: 1.12;
+}
+.hero__lede {
+  margin-top: 22px;
+  max-width: 32em;
+  color: var(--wp-ink-soft);
+  line-height: 1.85;
+}
+
+.portals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wp-gap);
+}
+.portal { min-width: 0; }
+.portal__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.portal__heading h2 { font-size: 30px; line-height: 1.3; }
+.action-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+.action-link span { display: inline-block; }
+.portal__media {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--wp-line);
+}
+.project-cover {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: clamp(22px, 2.8vw, 40px);
+  background: rgba(9, 18, 14, .72);
+}
+.project-cover__kind { color: var(--wp-ink-muted); font-size: 14px; letter-spacing: .08em; }
+.project-cover__title {
+  font-family: Georgia, var(--wp-serif);
+  font-size: clamp(36px, 4.2vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+.project-cover__title span { display: block; }
+.project-cover__note { color: var(--wp-brass); font-size: 14px; }
+.photo-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+.portal__caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 14px;
+  font-size: 16px;
+}
+.portal__meta { color: var(--wp-ink-muted); font-size: 15px; }
+
+.hero__scroll {
+  margin-top: clamp(28px, 4vh, 44px);
+  color: var(--wp-ink-muted);
+  font-size: 14px;
+  letter-spacing: .12em;
+}
+.hero__scroll span { display: inline-block; margin-left: 6px; }
+
+/* Chapters: translucent panels let the wallpaper remain visible at the edges and between sections. */
+.chapter { padding-block: clamp(36px, 5.5vw, 68px); }
+.chapter--about { padding-bottom: clamp(48px, 7vw, 96px); }
+.panel {
+  padding: clamp(22px, 3.8vw, 52px);
+  background: var(--wp-panel);
+  border: 1px solid var(--wp-line);
+}
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+.section-heading h2,
+.about-content h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.28; }
+.section-heading p { max-width: 30em; color: var(--wp-ink-muted); }
+
+.project-list { border-bottom: 1px solid var(--wp-line); }
+.project-entry {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) 28px;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 14px;
+  border-top: 1px solid var(--wp-line);
+}
+.project-entry h3 {
+  font-size: clamp(21px, 2vw, 27px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+.project-entry__description { max-width: 48em; color: var(--wp-ink-soft); font-size: 16px; }
+.project-entry__tags { margin-top: 10px; color: var(--wp-ink-muted); font-size: 14px; }
+.project-entry__arrow { justify-self: end; font-size: 24px; line-height: 1.5; }
+
+.photo-summary { margin-bottom: 22px; color: var(--wp-ink-muted); font-size: 15px; }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 22px;
+}
+.photo-work { min-width: 0; margin: 0; }
+.photo-work img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #16211c;
+  border: 1px solid var(--wp-line);
+}
+.photo-work figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 14px;
+  margin-top: 9px;
+  font-size: 15px;
+}
+.photo-work__category { color: var(--wp-ink-muted); font-size: 14px; }
+
+.status { padding-block: 16px; color: var(--wp-ink-soft); }
+.status a { text-decoration: underline; }
+.photo-grid > .status { grid-column: 1 / -1; }
+
+.about-content {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: clamp(24px, 4vw, 56px);
+}
+.about-copy p { max-width: 36em; font-size: 18px; line-height: 1.85; }
+.about-copy p + p { margin-top: 18px; }
+.about-location { display: block; margin-top: 24px; color: var(--wp-ink-muted); font-size: 15px; }
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(32px, 5vw, 56px);
+  padding-top: 18px;
+  border-top: 1px solid var(--wp-line);
+}
+
+/* Restrained feedback, limited to transform/opacity and disabled for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-enter] {
+    animation: wallpaper-rise 700ms cubic-bezier(.22, 1, .36, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+  .reveal.is-revealed { animation: wallpaper-rise 700ms cubic-bezier(.22, 1, .36, 1) both; }
+  .action-link span,
+  .project-entry__arrow { transition: transform 180ms ease-out; }
+  .action-link:hover span,
+  .action-link:focus-visible span,
+  .project-entry:hover .project-entry__arrow,
+  .project-entry:focus-visible .project-entry__arrow { transform: translate(3px, -3px); }
+  .photo-cover img { transition: transform 240ms ease-out; }
+  .photo-cover:hover img,
+  .photo-cover:focus-visible img { transform: scale(1.02); }
+  .project-entry { transition: background-color 180ms ease-out; }
+  .project-entry:hover { background: rgba(245, 242, 233, .05); }
+  .photo-work img { transition: transform 240ms ease-out; }
+  .photo-work:hover img { transform: scale(1.015); }
+}
+
+@keyframes wallpaper-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .skip-link { transition: none; }
+}
+
+@media (max-width: 900px) {
+  .hero { justify-content: flex-start; }
+  .hero__intro { padding-block: clamp(36px, 7vh, 76px) clamp(26px, 4vh, 44px); }
+  .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-entry { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) 22px; gap: 18px; }
+  .about-content { grid-template-columns: 1fr; gap: 20px; }
+}
+
+@media (max-width: 540px) {
+  body { font-size: 16px; }
+  .shell { padding-inline: 16px; }
+  .site-nav { min-height: 68px; gap: 12px; }
+  .wordmark { font-size: 20px; }
+  .site-nav__links { gap: 10px; }
+  .site-nav__links a { min-width: 44px; font-size: 15px; }
+  .hero { padding-bottom: 30px; }
+  .hero__intro { padding-block: 34px 24px; }
+  .hero__eyebrow { margin-bottom: 12px; font-size: 13px; }
+  h1 { font-size: clamp(34px, 9vw, 44px); }
+  .hero__lede { margin-top: 14px; font-size: 16px; }
+  .portals { gap: 12px; }
+  .portal__heading { flex-direction: column; align-items: flex-start; gap: 0; margin-bottom: 8px; }
+  .portal__heading h2 { font-size: 23px; }
+  .action-link { font-size: 14px; gap: 8px; }
+  .portal__media { aspect-ratio: 1 / 1; }
+  .project-cover { padding: 14px; }
+  .project-cover__title { font-size: clamp(19px, 5.8vw, 27px); }
+  .project-cover__kind { font-size: 12px; letter-spacing: .04em; }
+  .project-cover__note { display: none; }
+  .portal__caption { flex-direction: column; gap: 0; margin-top: 10px; font-size: 15px; line-height: 1.5; }
+  .portal__meta { font-size: 14px; }
+  .hero__scroll { margin-top: 22px; font-size: 13px; }
+  .chapter { padding-block: 20px; }
+  .chapter--about { padding-bottom: 32px; }
+  .panel { padding: 18px 16px; }
+  .section-heading { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 24px; }
+  .section-heading h2,
+  .about-content h2 { font-size: 30px; }
+  .section-heading p { font-size: 15px; }
+  .project-entry { grid-template-columns: minmax(0, 1fr) 22px; gap: 10px; padding: 18px 6px; }
+  .project-entry h3 { font-size: 21px; }
+  .project-entry__body { grid-column: 1 / -1; grid-row: 2; }
+  .project-entry__arrow { grid-column: 2; grid-row: 1; font-size: 22px; }
+  .project-entry__description { font-size: 15px; }
+  .project-entry__tags { margin-top: 8px; font-size: 13px; }
+  .photo-summary { margin-bottom: 16px; font-size: 14px; }
+  .photo-grid { gap: 20px 12px; }
+  .photo-work figcaption { flex-direction: column; gap: 0; font-size: 14px; }
+  .photo-work__category { font-size: 13px; }
+  .about-copy p { font-size: 16px; }
+  .about-location { margin-top: 18px; font-size: 14px; }
+  .site-footer { margin-top: 28px; }
+}

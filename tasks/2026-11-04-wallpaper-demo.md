@@ -68,14 +68,79 @@
 
 ## 执行者回执
 
-待后续执行时填写以下内容。
+2026-11-04 执行完成，等待规划者验收。
 
-- 改动文件及摘要
-- 上游复用位置、固定提交和许可处理
-- 实际壁纸列表与可调整参数
-- 验证命令、结果、预览 URL 和截图绝对路径
-- C1–C8 逐条通过情况及证据
-- 偏离说明与实现提交
+### 改动文件及摘要
+
+- `demo-wallpaper.html`（新增）：壁纸版独立入口。首屏含“策展空间”、简介、等宽等高的项目/摄影入口与真实精选封面；`main` 下方为全部 4 个项目、全部 36 张可见照片和关于/页脚。默认壁纸由 CSS 提供；无 JS 时保留介绍、双入口和说明性备用状态，并链接正式首页对应区块。未改动 `index.html`、`project.html`。
+- `css/demo-wallpaper.css`（新增）：固定壁纸底层 + 独立遮罩层（`--wp-scrim-opacity: 0.55`）+ 内容层；遮罩与壁纸均不接收指针事件。作品区使用半透明深色承托面，页面边缘与区块之间持续露出壁纸。含 900px/540px 两级响应式、44px 触控目标、可见焦点、700ms/18px/60ms 错开的入场与 160–240ms 的 hover/press 反馈，并在 `prefers-reduced-motion` 下停用。
+- `js/demo-wallpaper.js`（新增）：按配置列表读取/预加载下一张壁纸并写入本卡专用 `sessionStorage` 键；读取真实 `data/projects.json` 与 `data/photos.json`（继续过滤朋友类），渲染项目链接、真实摄影与数量摘要；IntersectionObserver 仅负责区块入场，默认状态本就完整可见。
+- 未新增图片或第三方资产；壁纸复用现有 `photos/full/photo_053.jpg`、`photo_071.jpg`、`photo_074.jpg`，摄影封面复用 `photo_048.jpg`。
+
+### 上游复用位置、固定提交与许可处理
+
+- 参考仓库固定提交 `617456b0e2e3ec6217af90633b7046077f2ac3d5`；只沿用任务卡已核对的机制：`.panel-cover` 的固定全屏 `cover`/`center center`/`no-repeat` 背景、`.panel-cover--overlay` 的 0.55 遮罩、`getBingImages()` 的“每次加载取下一张 + `sessionStorage` 索引”思路和 `iUp` 的淡入上移节奏。
+- 没有复制上游 HTML/CSS/JS 代码或图片，实现为本项目重写；`css/demo-wallpaper.css` 顶部注明机制来源与 `Copyright (c) 2017 Dmego`（MIT），因此未额外引入上游许可全文。
+- 使用本卡专用键 `demo-wallpaper-index`，未复用上游键名，也未引入远端 Bing 列表、自动轮播、WakaTime/周报/头像等上游模块。
+
+### 实际壁纸列表与可调整参数
+
+- 列表位置：`js/demo-wallpaper.js` 顶部 `WALLPAPERS`，当前为 `photos/full/photo_053.jpg`、`photo_071.jpg`、`photo_074.jpg`；第一项与 `css/demo-wallpaper.css` 中 `.wallpaper__image` 的 CSS 默认背景保持一致。
+- 调整方式：增删/排序列表即可；刷新后按“当前存储索引 + 1”取下一张并循环。存储键名为 `demo-wallpaper-index`。
+- CSS 变量：`--wp-scrim-opacity: 0.55`（遮罩），以及 `--wp-panel`（承托面透明度）、`--wp-ink*`、`--wp-brass`、`--wp-gap`。动效参数集中在 `@media (prefers-reduced-motion: no-preference)` 与 `@keyframes wallpaper-rise`。
+
+### 验证命令、结果、预览 URL 与截图
+
+- `node --check js/demo-wallpaper.js`：通过。
+- `git diff --check`：通过。
+- 数据/链接核对（Node）：4 个项目 ID 为 `todo-calendar`、`personal-site`、`math-notes`、`news-bot`；`data/photos.json` 共 36 条、可见 36 条、朋友类 0 条；所有缩略图/原图及 HTML 本地引用均存在。
+- HTTP（`python3 -m http.server 4174 --bind 127.0.0.1`，沿用上一轮已运行进程，PID `67355`）：`/demo-wallpaper.html` 200、`/index.html` 200、`/project.html?id=todo-calendar` 200。预览地址 `http://127.0.0.1:4174/demo-wallpaper.html`。
+- Ego 浏览器（CDP 视口模拟，TaskSpace 35，已关闭）：
+  - 1440×900：`scrollWidth=1440`；两入口均 `554×369px`；遮罩 computed opacity `0.55`；壁纸层 `position: fixed`、`pointer-events: none`、视口矩形 `0,0,1440,900`；`background-size: cover`、`center`、`no-repeat`。
+  - 390×844：`scrollWidth=390`；两入口均 `173×173px`、同一纵向位置；标题 1 行、字号 35.1px；无横向溢出、无被裁切文本；触控目标 44px。
+  - 320×740：`scrollWidth=320`；两入口均 `138×138px` 且同屏可发现；无溢出/裁切。
+  - 旋转实测连续 4 次加载：`photo_071`(index 1) → `photo_074`(index 2) → `photo_053`(index 0) → `photo_071`(index 1)，均在预加载成功后替换。
+  - 资源：37 张图片全部加载成功、0 破损；`performance` 资源状态全部 200，无失败请求；控制台无 error、无未捕获异常。
+  - 键盘：Tab 顺序为跳转链接 → 站点标识 → 项目/摄影/关于 → 两个入口动作与封面 → 4 个项目链接 → 页脚；在“个人主页网站”上按 Enter 打开 `project.html?id=personal-site`，详情标题正确。
+  - 锚点：点击导航“摄影”后 `#photography`，页面滚动到位；继续滚到页底时壁纸层仍为 `0,0,1440,900`，内容可完整浏览。
+  - reduced-motion：`matchMedia` 命中，入场 `animationName: none`、透明度 1、`scroll-behavior: auto`、内容全部可见。
+  - 壁纸加载失败：阻断 `photo_071.jpg` 后仍显示默认 `photo_053.jpg`，索引保持 0，仅产生一条预期的 `console.warn`；解除阻断后正常切到 `photo_071`(index 1)。
+  - 存储不可用：屏蔽 `sessionStorage` 后固定使用默认 `photo_053.jpg`，页面、4 个项目与 36 张照片均正常，索引写入静默跳过。
+  - 停用 JS：保留 h1、两个入口、3 个导航链接与默认壁纸 `photo_053.jpg`；两个 `.js-loading` 占位隐藏，显示两条 noscript 说明，`scrollWidth=1440`。
+- 已亲自查看的最终截图（均为绝对路径）：
+  - 1440 首屏 `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-1440-hero.png`
+  - 1440 全页 `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-1440-full.png`
+  - 390 首屏 `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-390-hero.png`
+  - 390 全页 `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-390-full.png`
+  - reduced-motion `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-1440-reduced-motion.png`
+  - 停用 JS `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-1440-nojs.png`
+  - 320px `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-320-hero.png`
+  - 壁纸失败兜底 `/private/var/folders/m5/dyzqqcrd1fzg8tc5f6tg50r80000gn/T/opencode/wallpaper-1440-failed-candidate.png`
+  - 截图未入库；全页截图中固定背景只绘制在文档顶部属截图工具行为，实际滚动时已按视口坐标验证固定层始终覆盖。
+- 三张壁纸上的浅色正文均已通过实际截图查看（053 用 1440 首屏、071 用 390 首屏、074 用 reduced-motion 截图），遮罩下正文清楚，图片仍可辨认。
+
+### C1–C8 逐条对照
+
+- C1 通过：`/demo-wallpaper.html` HTTP 200；使用当前 4 个项目与 36 张可见照片；1440 下两个入口均 `554×369px`，390 下均 `173×173px`、同屏可发现。
+- C2 通过：已查看 1440/390 首屏与全页截图；固定照片背景铺满、0.55 暗色遮罩、浅色前景清楚；桌面预览等宽等高；390/320 无横向溢出或文字裁切。
+- C3 通过：滚动到项目、摄影、关于及页底时壁纸层始终固定覆盖视口，内容完整可读；导航、入口、4 个项目详情链接与页脚链接实测可操作。
+- C4 通过：刷新按 071→074→053→071 递进循环；阻断候选图时保留默认 053 且索引不前进；存储不可用时固定默认图；空列表由 `nextWallpaperIndex()` 返回 `null` 的守卫与 CSS 默认背景兜底。
+- C5 通过：`--wp-scrim-opacity` computed 为 `0.55`；壁纸层在下、遮罩在上、内容层 `z-index: 1`，壁纸/遮罩 `pointer-events: none`；三张壁纸截图正文均可读，图片按原始比例 `cover` 裁切。
+- C6 通过：普通模式 700ms、18px、60ms 错开的入场实际可见；reduced-motion 下动画为 none、内容完整直显；页面无持续背景动画，停留稳定。
+- C7 通过：`node --check`、`git diff --check`、两个入口与代表性详情链接检查均通过；提供 1440/390 最终截图、预览地址与服务进程信息。
+- C8 通过：提交只含 3 个新 Demo 文件与本卡回执；`AGENTS.md`、`demo.html`、`css/demo.css`、`js/demo.js` 的既有未提交改动按基线保留；未改定义/状态文档、未发布、未推送；上游来源与 MIT 版权已在样式头部注明。
+
+### 偏离说明
+
+- 摄影区是“全部可见照片 + 数量摘要”的静态网格，未实现分类筛选、Lightbox 与 Tab 焦点管理等交互；这些属于暂缓的 `tasks/2026-11-04-demo-interaction.md` 范围，本卡只要求现有作品呈现。
+- 1440×900 首屏中 hero 实际高度约 1011px，“向下浏览”提示位于首屏下方；两个入口及其完整预览在首屏内可见，未压缩到机械等高。
+- 当前数据中 `photo_004` 与 `photo_005` 标题同为 `Z30 0077`，按真实数据原样展示，未修改 JSON。
+- 本地预览沿用上一轮已运行的 4174 服务，未新起服务器；Ego Lite 提示有可用更新，本卡未升级。
+- 无未记录的范围外改动。
+
+### 实现提交
+
+- 实现与回执同批提交，主题 `feat: add full-viewport wallpaper demo with rotating local wallpapers`；SHA 见交接消息。
 
 ## 规划者验收
 
