@@ -2,7 +2,13 @@
 
 ## Purpose
 
-A Chinese-language personal portfolio presenting mathematics, software projects, and photography with a curated-gallery aesthetic.
+A Chinese-language personal portfolio centered on two equally important collections: project work and photography, presented with a curated-gallery aesthetic. Mathematics is part of the owner's background and project content.
+
+## Design Priorities
+
+- Project work and photography are the site's two primary subjects and have equal prominence.
+- The homepage must make both collections easy to discover; neither is a secondary feature of the other.
+- Personal background supports the work rather than taking priority over either collection.
 
 ## User-Facing Pages
 

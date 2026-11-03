@@ -8,6 +8,8 @@
 
 ## Current Work
 
+UI proposal is being revised around the confirmed purpose: project work and photography have equal prominence. Homepage layout, palette, and motion remain under discussion; no website implementation changes have been made for this redesign.
+
 GitHub launch (docs/GIT_PUSH.md) is complete: clean single-commit history on `main`, pushed to `liusolo123/personal-site` via SSH, GitHub Pages was enabled. Strategy has since changed — the site's primary host returns to the Aliyun server (liusolo.top, domain already ICP-registered and pointing there); GitHub repo becomes version control/backup plus deploy trigger. Full plan documented in `docs/DEPLOY_WORKFLOW.md` (bare repo + post-receive hook, old-site tar backup then replace, Pages to be disabled). Plan only — no server-side operations executed yet.
 
 ## Known Issues
