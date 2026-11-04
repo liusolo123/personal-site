@@ -16,6 +16,15 @@
     "published": true
   },
   {
+    "id": "autocheck",
+    "title": "autocheck · 自动打卡",
+    "description": "面向西南大学查寝签到场景的非官方自托管工具，支持多账号定时执行、登录凭据自动续期、结果校验与飞书通知，并通过 Web 面板查看账号状态和执行记录。",
+    "tags": ["Python", "FastAPI", "React / TypeScript", "自动化"],
+    "cover": "assets/projects/autocheck/cover.webp",
+    "detailUrl": "project.html?id=autocheck",
+    "published": true
+  },
+  {
     "id": "math-notes",
     "title": "数学分析笔记系统",
     "description": "基于 Obsidian 的数学分析知识库，覆盖华东师大版《数学分析》第五版核心定理与证明。使用 LaTeX 公式渲染，双向链接构建知识图谱，支持全文检索与标签导航。",

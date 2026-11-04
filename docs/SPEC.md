@@ -24,6 +24,7 @@ A Chinese-language personal portfolio centered on two equally important collecti
 - `index.html` contains the full-viewport wallpaper, equal project/photography entrances, project collection, filtered photo gallery/viewer, and supporting personal information. The legacy `#gallery` anchor remains valid alongside `#photography`.
 - `project.html?id=<project-id>` shows a selected project from `data/projects.json`; missing or unknown IDs show an error state.
 - `project.html?id=personal-site` presents the complete case study of this website, with authentic desktop/mobile screenshots, project purpose, current capabilities, implementation choices, ongoing status, homepage and source links. The website is the featured project on the homepage.
+- `project.html?id=autocheck` presents the non-official, self-hosted check-in tool, including its purpose, six-stage execution flow, desktop/mobile management interface, account onboarding, recovery decisions, supported scope, and source/documentation links.
 
 ## Required Behavior
 
@@ -36,7 +37,8 @@ A Chinese-language personal portfolio centered on two equally important collecti
 ## Content Operations
 
 - Edit projects in `data/projects.json`.
-- The website is the user-confirmed representative project. The three older entries retain their data and have `published: false` while their current accuracy is reviewed.
-- Website case-study content is in the `website-case-template` inside `project.html`, styled by `css/project-case.css`. Real UI captures are stored as WebP in `assets/projects/personal-site/` and should be refreshed when the displayed interface materially changes.
+- The published catalog contains the website followed by autocheck. The website is the user-confirmed representative project. The three older entries have `published: false` while their current accuracy is reviewed.
+- Case-study content is in the `website-case-template` and `autocheck-case-template` inside `project.html`, styled by `css/project-case.css`. Real UI captures are stored as WebP in each project's `assets/projects/<id>/` directory and should be refreshed when the displayed interface materially changes.
+- Autocheck screenshots use the real frontend with isolated synthetic API responses. Captions identify the example accounts, timestamps and outcomes. Its public case uses screenshots and an execution diagram, with GitHub as the primary action.
 - Edit photo titles/categories in `data/photos.json` after asset generation.
 - Regenerating photo assets requires `D:\lr\out` and Pillow; do not regenerate for unrelated changes.

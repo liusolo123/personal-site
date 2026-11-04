@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/projects.css" />
   <link rel="stylesheet" href="css/project-detail.css" />
   <link rel="stylesheet" href="css/nav.css" />
-  <link rel="stylesheet" href="css/project-case.css?v=site-case-20261104" />
+  <link rel="stylesheet" href="css/project-case.css?v=autocheck-case-20261104" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2317130C' rx='4'/><text y='72' font-size='60' text-anchor='middle' x='50' fill='%23A8853D' font-family='serif'>策</text></svg>" />
 </head>
@@ -210,6 +210,122 @@
     </article>
   </template>
 
+  <template id="autocheck-case-template">
+    <article class="case-study autocheck-case">
+      <header class="case-nav case-shell">
+        <a class="case-wordmark" href="index.html">策展空间</a>
+        <a href="index.html#projects">返回项目作品 <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <div class="case-hero case-shell">
+        <h1>autocheck</h1>
+        <p class="case-lead">自动打卡与运行管理。</p>
+        <p class="case-summary">面向西南大学查寝签到场景的非官方自托管工具。将多账号执行、登录续期、结果校验和通知串在同一条流程里，通过 Web 面板查看运行情况。</p>
+        <div class="case-actions">
+          <a class="case-button" href="https://github.com/liusolo123/swu-check" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a>
+          <a class="case-text-link" href="#autocheck-flow">了解执行流程 <span aria-hidden="true">↓</span></a>
+        </div>
+        <dl class="case-facts">
+          <div><dt>应用场景</dt><dd>西南大学查寝签到 · 非官方</dd></div>
+          <div><dt>运行方式</dt><dd>自托管 / CLI / 定时任务</dd></div>
+          <div><dt>实现技术</dt><dd>Python / FastAPI / React / TypeScript</dd></div>
+        </dl>
+        <figure class="case-hero-image">
+          <img src="assets/projects/autocheck/dashboard-desktop.webp" alt="autocheck 桌面管理面板，展示账号池、登录凭据状态、当日汇总与执行明细，使用四个合成示例账号" width="1440" height="1080" fetchpriority="high">
+          <figcaption>真实前端界面，使用合成示例数据。截图中的账号、时间和执行结果用于说明功能。</figcaption>
+        </figure>
+      </div>
+
+      <section class="case-section case-shell case-overview" aria-labelledby="autocheck-purpose">
+        <div>
+          <h2 id="autocheck-purpose">让执行结果可追踪</h2>
+          <p>重复的签到任务背后，还需要处理登录过期、多个账号的状态差异，以及请求失败后的结果确认。autocheck 把这些环节组织成可重复执行的流程。</p>
+          <p>命令行承担单账号和批量执行，cron 按配置的时间触发任务。运行结果写入日志，管理面板提供查看入口，飞书通知汇总每批的最终结果。</p>
+        </div>
+        <div class="case-outcomes">
+          <h3>已实现的能力</h3>
+          <ul>
+            <li>单账号执行与多账号串行批量处理。</li>
+            <li>登录凭据探活、自动续期与人工兜底。</li>
+            <li>提交前预检、提交后复查与结果分类。</li>
+            <li>按日期查询记录、查看账号状态与飞书汇总。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-build" id="autocheck-flow" aria-labelledby="autocheck-flow-heading">
+        <div class="case-shell">
+          <div class="case-section-heading">
+            <h2 id="autocheck-flow-heading">一次执行的完整链路</h2>
+            <p>CLI 组织执行，Web 面板读取结果，两者复用同一套登录续期逻辑。</p>
+          </div>
+          <ol class="case-flow">
+            <li><h3>读取配置</h3><p>加载全局配置与账号资料，批量执行前检查授权声明。</p></li>
+            <li><h3>登录探活</h3><p>检查 token，有需要时续期，并将新凭据写回账号文件。</p></li>
+            <li><h3>查询与预检</h3><p>核对当日任务、身份和发布信息，检查签到状态与距离。</p></li>
+            <li><h3>提交与复查</h3><p>构造提交报文，随后确认同一任务实例的签到状态。</p></li>
+            <li><h3>分类与记录</h3><p>区分成功、已签到及异常，将执行结果写入 JSON 行日志。</p></li>
+            <li><h3>汇总与通知</h3><p>批量执行结束后汇总最终结果，供面板查询并推送到飞书。</p></li>
+          </ol>
+          <p class="case-flow-note">定时任务由 cron 触发，时间可配置。面板通过 FastAPI 查询账号与日志，新增账号也使用现有续期链。</p>
+        </div>
+      </section>
+
+      <section class="case-section case-shell" aria-labelledby="autocheck-interface">
+        <div class="case-section-heading">
+          <h2 id="autocheck-interface">把运行状态放到眼前</h2>
+          <p>面板提供当日汇总、账号池和执行明细，也能切换日期查询。</p>
+        </div>
+        <div class="case-mobile-story">
+          <div>
+            <h3>在手机上查看执行情况</h3>
+            <p>账号总数、token 就绪数量、待处理账号与当日执行结果集中呈现。异常保留具体说明，方便找到需要处理的账号。</p>
+            <p>桌面端使用表格浏览记录。手机端将表格行转为带字段名的纵向信息，适合逐条查看。</p>
+            <p class="case-media-note">手机截图使用与桌面截图相同的合成数据。</p>
+          </div>
+          <figure>
+            <img src="assets/projects/autocheck/dashboard-mobile.webp" alt="autocheck 手机管理面板，展示四项运行指标和按字段纵向排列的今日汇总，使用合成示例数据" width="390" height="860" loading="lazy">
+            <figcaption>手机端的指标与汇总记录，示例数据。</figcaption>
+          </figure>
+        </div>
+        <div class="case-account-story">
+          <figure>
+            <img src="assets/projects/autocheck/account-setup.webp" alt="autocheck 加入账号界面，包含合成学号、掩码密码、授权确认，以及取 token 完成后的就绪状态" width="600" height="600" loading="lazy">
+            <figcaption>真实账号加入界面的局部截图，输入与结果均为合成示例。</figcaption>
+          </figure>
+          <div>
+            <h3>从加入账号到凭据就绪</h3>
+            <p>管理员录入账号并确认已获得持有人授权后，后端将登录任务加入单并发队列。页面展示排队、取 token 与完成状态。</p>
+            <p>自动获取失败时，界面提示人工处理。账号池中的密码与 token 以掩码呈现，管理员可以对需要处理的账号重新发起取 token 任务。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-shell case-engineering" aria-labelledby="autocheck-decisions">
+        <h2 id="autocheck-decisions">把异常处理写进流程</h2>
+        <div class="case-decision-list">
+          <div><h3>为登录准备多条路径</h3><p>协议登录使用 HTTP 请求完成认证。协议链失效时，可使用 Playwright 浏览器登录兜底，也支持人工复制 token 后写回。</p></div>
+          <div><h3>提交前核对身份与任务</h3><p>提交学号来自 token 主体，并与配置和当日任务核对。任务实例、发布信息及已签到状态共同决定是否继续提交。</p></div>
+          <div><h3>用复查确认执行结果</h3><p>保存接口响应后，继续查询同一任务实例的签到状态。提交超时时同样先复查，再分类记录，减少重复提交与结果误报。</p></div>
+          <div><h3>按异常类型组织补救</h3><p>只读查询遇到瞬时网络错误时可重试，批量执行还提供一轮补救。日志保留阶段和结果分类，通知在补救结束后汇总最终状态。</p></div>
+        </div>
+      </section>
+
+      <section class="case-closing" aria-labelledby="autocheck-status">
+        <div class="case-shell">
+          <h2 id="autocheck-status">围绕签到场景维护</h2>
+          <p>项目源码已公开，包含 CLI、Web 面板、配置说明与 mock 测试。当前适配西南大学查寝签到接口，上游认证和业务接口变化时需要相应维护。</p>
+          <p>这是非官方自托管项目。使用需遵循学校相关规定，并获得账号持有人的授权。提交坐标来自配置、任务信息或缓存，具体机制见项目文档。</p>
+          <div class="case-actions">
+            <a class="case-button" href="https://github.com/liusolo123/swu-check" target="_blank" rel="noopener noreferrer">查看项目仓库 <span aria-hidden="true">↗</span></a>
+            <a class="case-text-link" href="https://github.com/liusolo123/swu-check/blob/main/docs/architecture.md" target="_blank" rel="noopener noreferrer">阅读架构文档 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+      <footer class="case-footer case-shell"><span>autocheck · 自动化实践项目</span><a href="index.html#projects">返回项目作品</a></footer>
+    </article>
+  </template>
+
   <!-- ═══════════ 页脚 ═══════════ -->
   <footer class="legacy-footer" style="text-align:center;padding:var(--space-3xl) var(--space-lg);color:var(--text-muted);font-size:0.75rem;letter-spacing:0.1em;border-top:var(--rule-thin);margin-top:var(--space-4xl);">
     <p>&copy; 2025 策展空间 · 保留所有权利</p>
@@ -224,6 +340,10 @@
       var loadingEl = document.getElementById('project-loading');
       var errorEl = document.getElementById('project-error');
       var contentEl = document.getElementById('project-content');
+      var caseTemplates = new Map([
+        ['personal-site', 'website-case-template'],
+        ['autocheck', 'autocheck-case-template']
+      ]);
 
       function showLoading() {
         loadingEl.style.display = '';
@@ -253,8 +373,9 @@
 
         document.title = project.id === 'personal-site' ? project.title : project.title + ' · 策展空间';
 
-        if (project.id === 'personal-site') {
-          contentEl.appendChild(document.getElementById('website-case-template').content.cloneNode(true));
+        var templateId = caseTemplates.get(project.id);
+        if (templateId) {
+          contentEl.appendChild(document.getElementById(templateId).content.cloneNode(true));
           document.querySelector('meta[name="description"]').content = project.description;
         }
 
@@ -271,8 +392,8 @@
         var params = new URLSearchParams(window.location.search);
         var projectId = params.get('id');
 
-        if (projectId === 'personal-site') {
-          document.body.classList.add('site-case');
+        if (caseTemplates.has(projectId)) {
+          document.body.classList.add('project-case');
           document.querySelector('.project-detail__back').href = 'index.html#projects';
           document.querySelector('.project-detail__error-btn').href = 'index.html#projects';
         }
