@@ -23,10 +23,12 @@ A Chinese-language personal portfolio centered on two equally important collecti
 
 - `index.html` contains hero, profile, project, and photo-gallery sections.
 - `project.html?id=<project-id>` shows a selected project from `data/projects.json`; missing or unknown IDs show an error state.
+- `project.html?id=personal-site&view=case` presents the complete case study of this website, with authentic desktop/mobile screenshots, project purpose, current capabilities, implementation choices, ongoing status, Demo and source links. The website is the featured project in the wallpaper Demo.
 
 ## Required Behavior
 
 - Project cards and project-detail content load from `data/projects.json`.
+- Main-home and wallpaper-Demo catalogs include projects unless `published` is explicitly false. Optional `cover` supplies a real project screenshot and `detailUrl` supplies the case-study destination, with the existing ID-based route as the default.
 - The gallery loads `data/photos.json`, filters the supported categories, hides the `朋友` category, and opens full images in a lightbox.
 - Navigation supports section highlighting, responsive menu controls, overlay click, Escape, and resize handling.
 - The site must work when served by an ordinary static HTTP server.
@@ -34,5 +36,7 @@ A Chinese-language personal portfolio centered on two equally important collecti
 ## Content Operations
 
 - Edit projects in `data/projects.json`.
+- The website is the user-confirmed representative project. The three older entries retain their data and have `published: false` while their current accuracy is reviewed.
+- Website case-study content is in the `website-case-template` inside `project.html`, styled by `css/project-case.css`. Real UI captures are stored as WebP in `assets/projects/personal-site/` and should be refreshed when the displayed interface materially changes.
 - Edit photo titles/categories in `data/photos.json` after asset generation.
 - Regenerating photo assets requires `D:\lr\out` and Pillow; do not regenerate for unrelated changes.

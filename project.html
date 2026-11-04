@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/projects.css" />
   <link rel="stylesheet" href="css/project-detail.css" />
   <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/project-case.css?v=site-case-20261104" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2317130C' rx='4'/><text y='72' font-size='60' text-anchor='middle' x='50' fill='%23A8853D' font-family='serif'>策</text></svg>" />
 </head>
@@ -107,8 +108,110 @@
     </div>
   </main>
 
+  <template id="website-case-template">
+    <article class="case-study">
+      <header class="case-nav case-shell">
+        <a class="case-wordmark" href="demo-wallpaper.html?view=site-case">策展空间</a>
+        <a href="demo-wallpaper.html?view=site-case#projects">返回项目作品 <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <div class="case-hero case-shell">
+        <h1>策展空间</h1>
+        <p class="case-lead">项目与摄影的个人展厅。</p>
+        <p class="case-summary">一个正在持续建设的个人网站。这里展示真实推进的项目，也收藏镜头里的日常。当前以可交互的壁纸版 Demo，逐步完善内容、界面与浏览体验。</p>
+        <div class="case-actions">
+          <a class="case-button" href="demo-wallpaper.html?view=site-case">体验当前 Demo <span aria-hidden="true">↗</span></a>
+          <a class="case-text-link" href="https://github.com/liusolo123/personal-site" target="_blank" rel="noopener noreferrer">源码仓库 <span aria-hidden="true">↗</span></a>
+        </div>
+        <dl class="case-facts">
+          <div><dt>项目状态</dt><dd>持续迭代</dd></div>
+          <div><dt>展示内容</dt><dd>项目作品与摄影作品</dd></div>
+          <div><dt>实现方式</dt><dd>HTML / CSS / JavaScript</dd></div>
+        </dl>
+        <figure class="case-hero-image">
+          <img src="assets/projects/personal-site/home-desktop.webp" alt="策展空间当前 Demo 的桌面首屏，项目与摄影入口并列展示" width="1440" height="900" fetchpriority="high">
+          <figcaption>当前 Demo 的真实界面，项目作品与摄影作品拥有并列入口。</figcaption>
+        </figure>
+      </div>
+
+      <section class="case-section case-shell case-overview" aria-labelledby="case-purpose">
+        <div>
+          <h2 id="case-purpose">把作品放进同一间展厅</h2>
+          <p>做这个网站，是希望有一个能持续更新的个人展示空间。项目记录构建与实践，摄影记录观察与感受，两类作品共同组成这个网站。</p>
+          <p>设计从“策展空间”展开。首页用同等级的标题、预览和入口介绍两类作品，随后分别进入项目介绍与摄影浏览。</p>
+        </div>
+        <div class="case-outcomes">
+          <h3>现在可以体验到</h3>
+          <ul>
+            <li>全屏照片壁纸与暗色遮罩，每次加载切换壁纸。</li>
+            <li>项目入口、用途介绍与独立的项目详情。</li>
+            <li>摄影分类、数量提示、空状态和大图浏览。</li>
+            <li>手机布局、键盘操作与减少动态效果适配。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-section case-shell" aria-labelledby="case-experience">
+        <div class="case-section-heading">
+          <h2 id="case-experience">从浏览到细看</h2>
+          <p>作品有清楚的入口，也有可以停下来阅读与观看的空间。</p>
+        </div>
+        <figure class="case-wide-image">
+          <img src="assets/projects/personal-site/photo-viewer.webp" alt="摄影大图查看器的真实界面，包含照片、标题、序号和前后切换控件" width="1440" height="900" loading="lazy">
+          <figcaption>大图查看器使用当前分类中的照片集合，支持方向键切换和 Escape 关闭。</figcaption>
+        </figure>
+        <div class="case-mobile-story">
+          <div>
+            <h3>在手机上也能完整浏览</h3>
+            <p>双入口在窄屏上保持可发现。分类按钮自动换行，照片可以直接点开，大图按原始比例缩放，关闭和前后张控件保持可操作。</p>
+            <p>打开大图后，焦点进入查看器。关闭时回到原来的照片与滚动位置，继续浏览时能够接上之前的位置。</p>
+            <a class="case-text-link" href="demo-wallpaper.html?view=site-case#photography">试试摄影浏览 <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure>
+            <img src="assets/projects/personal-site/home-mobile.webp" alt="策展空间当前 Demo 的手机首屏，两个作品入口同时可见" width="390" height="844" loading="lazy">
+            <figcaption>手机首屏的实际布局。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-build" aria-labelledby="case-implementation">
+        <div class="case-shell case-build-grid">
+          <div>
+            <h2 id="case-implementation">用静态文件持续构建</h2>
+            <p>网站沿用原生 HTML、CSS 和 JavaScript。页面可以由普通静态 HTTP 服务提供，作品数据与展示逻辑分别维护。</p>
+            <p>这种结构适合当前阶段逐步补充内容，也方便把背景、作品列表和浏览交互分别调整。</p>
+          </div>
+          <dl class="case-implementation-list">
+            <div><dt>页面与样式</dt><dd>HTML 组织内容，CSS 定义壁纸、遮罩、布局与响应式样式。</dd></div>
+            <div><dt>作品数据</dt><dd>项目与照片读取本地 JSON，摄影复用现有缩略图和大图。</dd></div>
+            <div><dt>浏览交互</dt><dd>原生 JavaScript 处理分类与壁纸切换，dialog 承载大图查看器。</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="case-section case-shell" aria-labelledby="case-decisions">
+        <h2 id="case-decisions">这次设计里的几个选择</h2>
+        <div class="case-decision-list">
+          <div><h3>给两类作品相同的分量</h3><p>项目和摄影在首屏并列，使用一致的入口层级。项目以用途和实现展开，摄影以图片和浏览体验展开。</p></div>
+          <div><h3>让壁纸与阅读各有位置</h3><p>照片铺满视窗，暗色遮罩稳定文字对比。长内容放在深色承托面上，壁纸继续出现在页面边缘与区块之间。</p></div>
+          <div><h3>把交互细节放进实现</h3><p>分类结果与大图使用同一集合，单张照片集合有明确的按钮状态。键盘焦点、滚动恢复和减少动态效果一起纳入浏览流程。</p></div>
+        </div>
+        <p class="case-credit">全屏壁纸的呈现方式参考了 <a href="https://github.com/dmego/home.github.io" target="_blank" rel="noopener noreferrer">dmego/home.github.io</a>，结合本项目的双展区结构与本地摄影素材实现。</p>
+      </section>
+
+      <section class="case-closing" aria-labelledby="case-progress">
+        <div class="case-shell">
+          <h2 id="case-progress">网站还在继续生长</h2>
+          <p>目前已完成壁纸背景、摄影浏览与这一份项目介绍。接下来会继续核实项目内容、整理作品素材，并逐步完善正式页面。</p>
+          <a class="case-button" href="demo-wallpaper.html?view=site-case">回到当前 Demo <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <footer class="case-footer case-shell"><span>策展空间 · 持续迭代的个人项目</span><a href="demo-wallpaper.html?view=site-case#projects">返回项目作品</a></footer>
+    </article>
+  </template>
+
   <!-- ═══════════ 页脚 ═══════════ -->
-  <footer style="text-align:center;padding:var(--space-3xl) var(--space-lg);color:var(--text-muted);font-size:0.75rem;letter-spacing:0.1em;border-top:var(--rule-thin);margin-top:var(--space-4xl);">
+  <footer class="legacy-footer" style="text-align:center;padding:var(--space-3xl) var(--space-lg);color:var(--text-muted);font-size:0.75rem;letter-spacing:0.1em;border-top:var(--rule-thin);margin-top:var(--space-4xl);">
     <p>&copy; 2025 策展空间 · 保留所有权利</p>
     <p style="margin-top:var(--space-sm);opacity:0.6;">建于 GitHub Pages · 纯静态策展</p>
   </footer>
@@ -148,7 +251,12 @@
         }).join('');
         document.getElementById('project-tags').innerHTML = tagsHtml;
 
-        document.title = project.title + ' · 策展空间';
+        document.title = project.id === 'personal-site' ? project.title : project.title + ' · 策展空间';
+
+        if (project.id === 'personal-site') {
+          contentEl.appendChild(document.getElementById('website-case-template').content.cloneNode(true));
+          document.querySelector('meta[name="description"]').content = project.description;
+        }
 
         requestAnimationFrame(function () {
           contentEl.querySelectorAll('.fade-in').forEach(function (el) {
@@ -162,6 +270,12 @@
 
         var params = new URLSearchParams(window.location.search);
         var projectId = params.get('id');
+
+        if (projectId === 'personal-site') {
+          document.body.classList.add('site-case');
+          document.querySelector('.project-detail__back').href = 'demo-wallpaper.html?view=site-case#projects';
+          document.querySelector('.project-detail__error-btn').href = 'demo-wallpaper.html?view=site-case#projects';
+        }
 
         if (!projectId) {
           showError();

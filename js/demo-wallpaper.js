@@ -118,7 +118,7 @@
 
     const entries = projects.map(project => {
       const link = element('a', 'project-entry');
-      link.href = `project.html?id=${encodeURIComponent(project.id)}`;
+      link.href = project.detailUrl || `project.html?id=${encodeURIComponent(project.id)}`;
       const body = element('div', 'project-entry__body');
       body.append(
         element('p', 'project-entry__description', project.description),
@@ -131,15 +131,21 @@
     });
     container.replaceChildren(...entries);
 
-    const featured = projects[0];
+    const featured = projects.find(project => project.id === 'personal-site') || projects[0];
     const cover = document.getElementById('featured-project-cover');
-    cover.href = `project.html?id=${encodeURIComponent(featured.id)}`;
+    cover.href = featured.detailUrl || `project.html?id=${encodeURIComponent(featured.id)}`;
     cover.setAttribute('aria-label', `了解 ${featured.title}`);
     document.getElementById('featured-project-kind').textContent = (featured.tags || [])[0] || '项目作品';
     const name = featured.title.replace(/\s*小程序$/, '');
     document.getElementById('featured-project-title').textContent = name;
     const lines = name.includes(' ') ? name.split(/\s+/) : [name];
     document.getElementById('featured-project-name').replaceChildren(...lines.map(line => element('span', '', line)));
+    if (featured.cover) {
+      const image = document.getElementById('featured-project-image');
+      image.src = featured.cover;
+      image.alt = `${featured.title}的实际页面`;
+      cover.classList.add('project-cover--image');
+    }
     count.textContent = `· ${projects.length} 个项目`;
   }
 
@@ -320,7 +326,9 @@
     observeReveals();
 
     await Promise.all([
-      readCollection('data/projects.json').then(renderProjects).catch(error => {
+      readCollection('data/projects.json').then(projects => {
+        renderProjects(projects.filter(project => project.published !== false));
+      }).catch(error => {
         console.error('Wallpaper demo projects:', error);
         showStatus(document.getElementById('wallpaper-projects'), '暂时无法载入项目，请稍后刷新。');
       }),

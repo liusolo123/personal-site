@@ -40,12 +40,12 @@
     try {
       const resp = await fetch('data/projects.json');
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const projects = await resp.json();
+      const projects = (await resp.json()).filter(project => project.published !== false);
 
       grid.innerHTML = projects
         .map(
           (p, i) => `
-        <a href="project.html?id=${encodeURIComponent(p.id)}" class="project-card fade-in fade-in--delay-${Math.min(i + 1, 5)}">
+        <a href="${p.detailUrl || `project.html?id=${encodeURIComponent(p.id)}`}" class="project-card fade-in fade-in--delay-${Math.min(i + 1, 5)}">
           <div class="project-card__number">No.${String(i + 1).padStart(3, '0')}</div>
           <h3 class="project-card__title">${escapeHTML(p.title)}</h3>
           <p class="project-card__desc">${escapeHTML(p.description)}</p>
