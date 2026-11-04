@@ -6,9 +6,9 @@ The site has no build system, package manifest, or server-side runtime. Browsers
 
 ## Page Flow
 
-`index.html` loads CSS in this order: reset, variables, shared layout, then feature styles. Its scripts load `nav.js`, `card-tilt.js`, `lightbox.js`, `gallery.js`, then `main.js`.
+`index.html` uses the accepted wallpaper design and loads `css/reset.css`, `css/demo-wallpaper.css`, and the deferred `js/demo-wallpaper.js`. The shared wallpaper script owns background selection, project rendering, photo filters, the native dialog viewer, and entrance reveals. `demo-wallpaper.html` remains a preview using the same assets.
 
-`main.js` loads and renders project cards. `gallery.js` owns gallery data, filters, grid rendering, and lightbox handoff. `nav.js` owns navigation behavior. `project.html` has its own inline detail renderer and reads the same projects dataset.
+`project.html` has its own inline detail renderer and reads the same projects dataset. Website-case navigation returns to the production homepage. Legacy project pages retain their shared layout and navigation assets.
 
 ## Data and Assets
 

@@ -10,9 +10,9 @@ A Chinese-language personal portfolio centered on two equally important collecti
 - The homepage must make both collections easy to discover; neither is a secondary feature of the other.
 - Personal background supports the work rather than taking priority over either collection.
 
-## UI Demo Direction
+## UI Direction
 
-- Build independent preview pages using the existing static stack. The current background iteration uses `demo-wallpaper.html` for review.
+- The accepted wallpaper design is the production homepage at `index.html`. Independent preview pages remain available in the existing static stack.
 - Use the agreed dual-exhibition composition: equal project and photography entrances on desktop, equal headings/actions, substantial previews for both, followed by featured projects, photography, and supporting personal information. Mobile visitors can discover both entrances immediately.
 - The current background reference is [dmego/home.github.io](https://github.com/dmego/home.github.io), as requested on 2026-11-04. Use a recognizable full-viewport photographic wallpaper, centered `cover` sizing, a dark overlay initially at 0.55, and light foreground content. Keep project work and photography equally prominent over this background.
 - Prepare the reference-based preview as an independent `demo-wallpaper.html`. The accepted background brief and receipt are in `tasks/done/2026-11-04-wallpaper-demo.md`. The previous grain/chapter-color preview is an earlier iteration available for comparison.
@@ -21,16 +21,16 @@ A Chinese-language personal portfolio centered on two equally important collecti
 
 ## User-Facing Pages
 
-- `index.html` contains hero, profile, project, and photo-gallery sections.
+- `index.html` contains the full-viewport wallpaper, equal project/photography entrances, project collection, filtered photo gallery/viewer, and supporting personal information. The legacy `#gallery` anchor remains valid alongside `#photography`.
 - `project.html?id=<project-id>` shows a selected project from `data/projects.json`; missing or unknown IDs show an error state.
-- `project.html?id=personal-site&view=case` presents the complete case study of this website, with authentic desktop/mobile screenshots, project purpose, current capabilities, implementation choices, ongoing status, Demo and source links. The website is the featured project in the wallpaper Demo.
+- `project.html?id=personal-site` presents the complete case study of this website, with authentic desktop/mobile screenshots, project purpose, current capabilities, implementation choices, ongoing status, homepage and source links. The website is the featured project on the homepage.
 
 ## Required Behavior
 
 - Project cards and project-detail content load from `data/projects.json`.
 - Main-home and wallpaper-Demo catalogs include projects unless `published` is explicitly false. Optional `cover` supplies a real project screenshot and `detailUrl` supplies the case-study destination, with the existing ID-based route as the default.
 - The gallery loads `data/photos.json`, filters the supported categories, hides the `朋友` category, and opens full images in a lightbox.
-- Navigation supports section highlighting, responsive menu controls, overlay click, Escape, and resize handling.
+- Homepage navigation links lead to the project, photography and about sections. The photo viewer supports keyboard navigation, Escape, focus restoration and scroll restoration.
 - The site must work when served by an ordinary static HTTP server.
 
 ## Content Operations

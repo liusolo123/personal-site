@@ -12,17 +12,16 @@
 
 ## Current Work
 
-The website project sample is ready for user review at `http://127.0.0.1:4174/project.html?id=personal-site&view=case`, linked from `demo-wallpaper.html?view=site-case`. The user authorized direct implementation for this sample. Other project entries were hidden from current catalogs while retaining their data, pending user verification of their accuracy and visibility.
+The user approved the website project sample and authorized direct production deployment on 2026-11-04. The wallpaper design is being promoted to `index.html`, with the complete website case at `project.html?id=personal-site`. Other project entries remain unpublished pending verification, as explicitly confirmed by the user.
 
-The previous interaction card is deferred, with uncommitted changes in `demo.html`, `css/demo.css`, and `js/demo.js` and an incomplete receipt. Its functionality has been carried into the accepted wallpaper version. These older changes still need a separate disposition before production integration.
+The previous interaction card is deferred, with uncommitted changes in `demo.html`, `css/demo.css`, and `js/demo.js` and an incomplete receipt. Its functionality has been carried into the accepted wallpaper version. These older changes remain deferred.
 
-GitHub launch (docs/GIT_PUSH.md) is complete: clean single-commit history on `main`, pushed to `liusolo123/personal-site` via SSH, GitHub Pages was enabled. Strategy has since changed — the site's primary host returns to the Aliyun server (liusolo.top, domain already ICP-registered and pointing there); GitHub repo becomes version control/backup plus deploy trigger. Full plan documented in `docs/DEPLOY_WORKFLOW.md` (bare repo + post-receive hook, old-site tar backup then replace, Pages to be disabled). Plan only — no server-side operations executed yet.
+Production uses the existing Aliyun host at `https://liusolo.top/`. The SSH channel and post-receive deployment hook were verified on 2026-11-04. The current server revision is `2234f63`. A verified backup is stored at `/root/backup/personal-site-before-wallpaper-20261104-202500.tar.gz`. Local checks passed for scripts, asset paths, project visibility and homepage/case navigation; the release is ready to push to the existing GitHub/Aliyun remotes.
 
 ## Known Issues
 
 - Older unpublished project detail pages retain their legacy placeholders pending content verification.
-- The portrait area is a placeholder.
-- README and page footer reference GitHub Pages; the static implementation itself is host-agnostic.
+- nginx retains a legacy SPA fallback that returns homepage HTML for missing paths. Deployment validation must verify media content types as well as HTTP status.
 
 ## Verification
 
@@ -35,8 +34,8 @@ node -e "for (const p of ['data/projects.json','data/photos.json']) { const data
 python -m http.server 8080
 ```
 
-Open `http://localhost:8080/` and `http://localhost:8080/project.html?id=todo-calendar` while the server is running.
+Open `http://localhost:8080/` and `http://localhost:8080/project.html?id=personal-site` while the server is running.
 
 ## Next Step
 
-Review the website case copy, layout, screenshots and current project visibility with the user. Verify the remaining real projects before expanding the catalog. Photography curation and production integration follow as separately confirmed work.
+Complete the authorized deployment, verify the live homepage, project case, gallery and assets, then record the deployed revision and backup. Verify the remaining real projects before expanding the catalog. Photography curation follows as separately confirmed work.

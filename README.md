@@ -102,28 +102,13 @@ python scripts/build-photos.py
 }
 ```
 
-## 部署到 GitHub Pages
+## 正式部署
 
-1. 在 GitHub 创建仓库 `username.github.io`（或其它名称）
-2. 将 `personal-site/` 目录下的所有文件推送到仓库：
+网站发布于 [liusolo.top](https://liusolo.top/)，由阿里云服务器上的 nginx 提供静态文件。`index.html` 为壁纸版正式首页，项目详情通过 `project.html?id=personal-site` 访问。
 
-```bash
-cd personal-site
-git init
-git add .
-git commit -m "Initial commit: personal site"
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git branch -M main
-git push -u origin main
-```
+完成相关验证后，提交本次改动并运行 `git push origin main`。现有 origin 同时推送 GitHub 备份仓库和阿里云裸仓库，服务器的 post-receive hook 将 main 检出到 `/var/www/personal-site`。
 
-3. 在仓库 Settings → Pages 中启用 GitHub Pages
-   - Source: Deploy from a branch
-   - Branch: `main` / `/(root)`
-
-4. 等待几分钟后访问 `https://<你的用户名>.github.io/<仓库名>/`
-
-> 注意：GitHub Pages 免费额度为 1GB 仓库空间、100GB/月带宽。75 张压缩后的照片约 50MB，完全在限额内。
+服务器目录、备份及回滚方法见 [部署工作流](docs/DEPLOY_WORKFLOW.md)。
 
 ## 设计参考
 
