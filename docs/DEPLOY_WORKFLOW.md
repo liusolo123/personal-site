@@ -2,7 +2,17 @@
 
 > 生成日期：2026-09-01
 > 决策来源：方案探讨确认 —— 部署链路选「裸仓库 + post-receive hook」/ 旧站（本站旧版）备份后整体替换 / GitHub Pages 关闭
-> 状态：**已上线生效（2026-09-01 15:08 双推成功，hook 部署）**；Step 6 关闭 Pages 待用户网页操作
+> 状态：**壁纸版已正式上线（2026-11-04，双推成功，hook 部署）**；Step 6 关闭 Pages 的完成状态尚未核实
+
+---
+
+## 当前发布
+
+- 正式首页为 `https://liusolo.top/`，`index.html` 使用已确认的壁纸版布局。
+- 网站项目案例为 `https://liusolo.top/project.html?id=personal-site`。首页展示 1 个项目和 36 张摄影作品，另外 3 项旧项目等待核实。
+- UI 发布提交为 `d8611ba`，GitHub 与阿里云 main 均推送成功，现有 post-receive hook 已执行部署。
+- 上线前的旧版备份为 `/root/backup/personal-site-before-wallpaper-20261104-202500.tar.gz`，归档校验通过，SHA-256 为 `2f489012d50a8eac945c6d3bc54ca47fec04b1dc69d2f8cdea2f273ba3a0a161`。
+- 线上验证通过。84 个页面与资源的 HTTP 状态和 MIME 类型符合预期，6 个核心文件与本地 SHA-256 一致，HTTP 跳转 HTTPS。真实浏览器验证了项目往返、摄影筛选、大图键盘操作及关闭后的焦点恢复，桌面 1440px 与手机 390px 布局正常。
 
 ---
 
@@ -172,9 +182,9 @@ git push git@github.com:liusolo123/personal-site.git main
 
 | 检查项 | 期望结果 |
 |---|---|
-| `https://liusolo.top` 首页 | 200，四个展厅正常渲染 |
-| `https://liusolo.top/project.html?id=todo-calendar` | 详情页正常 |
-| 图廊照片 | 37 张公开图全部加载 |
+| `https://liusolo.top` 首页 | 200，壁纸背景、项目与摄影双入口正常渲染 |
+| `https://liusolo.top/project.html?id=personal-site` | 完整项目案例正常，返回正式首页 |
+| 图廊照片 | 36 张公开图及分类、大图查看正常 |
 | `https://liusolo.top/photos/full/photo_001.jpg` | 404（隐私图不在站内） |
 | `git push` 回显 | 双 remote 各一段输出，含 `✓ deployed` |
 | GitHub 仓库 | 最新 commit 与本地一致 |

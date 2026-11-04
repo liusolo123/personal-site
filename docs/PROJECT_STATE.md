@@ -9,14 +9,15 @@
 - Full-viewport wallpaper demo accepted (`6411c8f`), including fixed cover background, 0.55 scrim, load-based image rotation, fallback, and equal project/photo entrances. Receipt: `tasks/done/2026-11-04-wallpaper-demo.md`.
 - Wallpaper photo interactions accepted (`3bcda42`), including category counts/empty states, native dialog, keyboard/focus/scroll handling, mobile layout, and corrected fallback links. Receipt: `tasks/done/2026-11-04-wallpaper-interaction.md`.
 - Complete website project case study implemented directly at the user's request, including real UI screenshots, purpose/capabilities/implementation/design content, live Demo/source links, and a real cover featured on the wallpaper home page.
+- The accepted wallpaper homepage and complete website case are live at `https://liusolo.top/` and `https://liusolo.top/project.html?id=personal-site` as of 2026-11-04. UI release `d8611ba` was pushed to both GitHub and the Aliyun deployment repository.
 
 ## Current Work
 
-The user approved the website project sample and authorized direct production deployment on 2026-11-04. The wallpaper design is being promoted to `index.html`, with the complete website case at `project.html?id=personal-site`. Other project entries remain unpublished pending verification, as explicitly confirmed by the user.
+The authorized deployment is complete. `index.html` serves the accepted wallpaper design, with project and photography entrances of equal prominence and the full website case at `project.html?id=personal-site`. Other project entries remain unpublished pending verification, as explicitly confirmed by the user.
 
 The previous interaction card is deferred, with uncommitted changes in `demo.html`, `css/demo.css`, and `js/demo.js` and an incomplete receipt. Its functionality has been carried into the accepted wallpaper version. These older changes remain deferred.
 
-Production uses the existing Aliyun host at `https://liusolo.top/`. The SSH channel and post-receive deployment hook were verified on 2026-11-04. The current server revision is `2234f63`. A verified backup is stored at `/root/backup/personal-site-before-wallpaper-20261104-202500.tar.gz`. Local checks passed for scripts, asset paths, project visibility and homepage/case navigation; the release is ready to push to the existing GitHub/Aliyun remotes.
+Production uses the existing Aliyun host and post-receive hook. The pre-release backup is `/root/backup/personal-site-before-wallpaper-20261104-202500.tar.gz`, verified with `tar -tzf` and SHA-256. Both remote pushes succeeded and the hook deployed UI release `d8611ba`.
 
 ## Known Issues
 
@@ -26,6 +27,8 @@ Production uses the existing Aliyun host at `https://liusolo.top/`. The SSH chan
 ## Verification
 
 Current sample checks passed. JS syntax, JSON/asset references and diff checks passed. Actual wallpaper-home navigation opens the website case. At 1440/768/390/320px, scrollWidth equals viewport width, all case headings use at most two lines, and all 3 case screenshots load. Main home shows 1 project and unknown project IDs still show the error state. Real captures total about 373 KB across 4 WebP files. Prior wallpaper/gallery interaction evidence remains in the archived receipts.
+
+Production checks passed on 2026-11-04. All 84 checked pages/assets returned the expected HTTP status and MIME type, six core files matched local SHA-256, and HTTP redirected to HTTPS. Live browser checks passed for the homepage-to-case-to-home flow, 1 project/36 photos, city filtering to 3 photos, keyboard viewer navigation, Escape/focus restoration, and 1440px/390px layouts. Screenshots were visually checked at both widths. These results remain valid for the unchanged UI files.
 
 From the repository root:
 
@@ -38,4 +41,4 @@ Open `http://localhost:8080/` and `http://localhost:8080/project.html?id=persona
 
 ## Next Step
 
-Complete the authorized deployment, verify the live homepage, project case, gallery and assets, then record the deployed revision and backup. Verify the remaining real projects before expanding the catalog. Photography curation follows as separately confirmed work.
+Verify the remaining real projects before expanding the catalog. Photography curation and disposition of the older prototype changes follow as separately confirmed work.
