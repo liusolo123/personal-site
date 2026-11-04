@@ -1,7 +1,7 @@
 # 双展区 Demo：交互、适配与交付
 
 - 日期：2026-11-04
-- 状态：暂缓。用户已指定 dmego/home.github.io 为新背景参考，后续交接依据见 `tasks/2026-11-04-wallpaper-demo.md`。
+- 状态：暂缓，功能由壁纸版后续交互卡承接，见 `tasks/2026-11-04-wallpaper-interaction.md`。本卡回执仍未完成。
 - 执行角色：执行者（另一位 AI）；规划者负责验收。
 - 前置卡：`tasks/2026-11-04-demo-visual.md`（验收后位于 `tasks/done/`）
 
