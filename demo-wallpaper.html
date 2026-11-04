@@ -99,11 +99,12 @@
             <p>以镜头，保存日常里的片刻。</p>
           </div>
           <p class="photo-summary" id="wallpaper-photo-summary" aria-live="polite"></p>
+          <div class="photo-filters" id="wallpaper-photo-filters" role="group" aria-label="筛选摄影作品" hidden></div>
           <div class="photo-grid" id="wallpaper-photos" aria-live="polite">
             <p class="status js-loading">正在整理摄影作品…</p>
           </div>
           <noscript>
-            <p class="status">摄影合集需要启用 JavaScript。页面介绍与两个入口仍可正常阅读，也可以访问 <a href="index.html#photography">正式首页的摄影区</a>。</p>
+            <p class="status">摄影合集需要启用 JavaScript。页面介绍与两个入口仍可正常阅读，也可以访问 <a href="index.html#gallery">正式首页的摄影区</a>。</p>
           </noscript>
         </div>
       </div>
@@ -128,5 +129,25 @@
       </div>
     </section>
   </main>
+
+  <dialog class="photo-viewer" id="wallpaper-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-counter">
+    <div class="photo-viewer__toolbar">
+      <span>摄影作品</span>
+      <button class="viewer-control" id="viewer-close" type="button" aria-label="关闭大图" autofocus>关闭 <span aria-hidden="true">×</span></button>
+    </div>
+    <figure class="photo-viewer__figure">
+      <img id="viewer-image" alt="">
+      <figcaption class="photo-viewer__caption">
+        <div><h2 id="viewer-title"></h2><p id="viewer-category"></p></div>
+        <p id="viewer-counter" aria-live="polite"></p>
+      </figcaption>
+    </figure>
+    <p class="photo-viewer__status" id="viewer-status" role="status" hidden></p>
+    <div class="photo-viewer__navigation">
+      <button class="viewer-control" id="viewer-prev" type="button" aria-label="上一张"><span aria-hidden="true">←</span> 上一张</button>
+      <span class="photo-viewer__hint">方向键切换 · Esc 关闭</span>
+      <button class="viewer-control" id="viewer-next" type="button" aria-label="下一张">下一张 <span aria-hidden="true">→</span></button>
+    </div>
+  </dialog>
 </body>
 </html>
